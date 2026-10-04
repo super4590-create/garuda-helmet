@@ -1183,21 +1183,56 @@
       background: rgba(81, 226, 245, 0.45);
     }
 
-    /* ── STEP PANES INSTANT SWITCHING ── */
+    /* ── STEP PANES SMOOTH SLIDE TRANSITIONS ── */
     .survey-pane {
       display: none;
-      opacity: 1;
-      transform: none;
+      opacity: 0;
+      will-change: transform, opacity;
     }
 
     .survey-pane.is-active {
       display: block;
-      animation: paneInstantIn 0.08s ease-out;
+      opacity: 1;
     }
 
-    @keyframes paneInstantIn {
-      from { opacity: 0.9; }
-      to { opacity: 1; }
+    /* Slide in from right (forward navigation) */
+    .survey-pane.slide-in-right {
+      animation: slideInRight 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Slide in from left (backward navigation) */
+    .survey-pane.slide-in-left {
+      animation: slideInLeft 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Slide out to left (forward navigation) */
+    .survey-pane.slide-out-left {
+      animation: slideOutLeft 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Slide out to right (backward navigation) */
+    .survey-pane.slide-out-right {
+      animation: slideOutRight 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideOutLeft {
+      from { opacity: 1; transform: translateX(0); }
+      to   { opacity: 0; transform: translateX(-40px); }
+    }
+
+    @keyframes slideOutRight {
+      from { opacity: 1; transform: translateX(0); }
+      to   { opacity: 0; transform: translateX(40px); }
     }
 
     .pane-header {
@@ -4044,8 +4079,10 @@
       }
     }
 
-    // ── STEP SWITCHING INSTANT & FAST ──
+    // ── STEP SWITCHING WITH SMOOTH SLIDE ──
+    let isTransitioning = false;
     function goToStep(fromStep, toStep) {
+      if (isTransitioning) return;
       if (toStep > fromStep) {
         if (!checkPageValidity(fromStep)) {
           return;
@@ -4059,20 +4096,40 @@
 
       if (!currentPane || !nextPane) return;
 
-      // Instant switch with zero delay
-      currentPane.classList.remove('is-active');
-      nextPane.classList.add('is-active');
+      isTransitioning = true;
+      const goingForward = toStep > fromStep;
 
-      // Reset scroll position within window body (Desktop)
-      if (scrollContainer) {
-        scrollContainer.scrollTop = 0;
-      }
+      // Clean old animation classes
+      currentPane.classList.remove('slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
+      nextPane.classList.remove('slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
 
-      // Jump to first question of the new section
-      const firstQuestion = nextPane.querySelector('.question-card') || nextPane;
-      if (firstQuestion) {
-        firstQuestion.scrollIntoView({ behavior: 'auto', block: 'start' });
-      }
+      // Slide out current pane
+      currentPane.classList.add(goingForward ? 'slide-out-left' : 'slide-out-right');
+
+      // After exit animation, swap panes and slide in
+      currentPane.addEventListener('animationend', function handler() {
+        currentPane.removeEventListener('animationend', handler);
+        currentPane.classList.remove('is-active', 'slide-out-left', 'slide-out-right');
+
+        // Reset scroll position within window body
+        if (scrollContainer) {
+          scrollContainer.scrollTop = 0;
+        }
+
+        nextPane.classList.add('is-active', goingForward ? 'slide-in-right' : 'slide-in-left');
+
+        nextPane.addEventListener('animationend', function handler2() {
+          nextPane.removeEventListener('animationend', handler2);
+          nextPane.classList.remove('slide-in-right', 'slide-in-left');
+          isTransitioning = false;
+        });
+
+        // Scroll to first question
+        const firstQuestion = nextPane.querySelector('.question-card') || nextPane;
+        if (firstQuestion) {
+          firstQuestion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
 
       updateHUD(toStep);
       makeWindowActive();
@@ -4463,48 +4520,63 @@
       }
 
       const submitBtn = document.getElementById('main-submit-btn');
-      submitBtn?.classList.add('is-loading');
+      const submitTxtSpan = submitBtn ? (submitBtn.querySelector('.btn-text') || submitBtn.querySelector('.btn-label-text') || submitBtn) : null;
+      let originalText = '';
+      
+      if (submitBtn) {
+        if (submitBtn.disabled) return; // Prevent double submission
+        submitBtn.classList.add('is-loading');
+        submitBtn.disabled = true;
+        submitBtn.style.pointerEvents = 'none';
+        
+        if (submitTxtSpan && submitTxtSpan !== submitBtn) {
+          originalText = submitTxtSpan.textContent;
+          submitTxtSpan.textContent = 'Submitting...';
+        }
+      }
 
       const payload = {
-        _subject: '🪖 SmartShield × ModSmart 3-Step PMF Survey — Angiras Industries',
-        '01_Occupation': surveyAnswers.occupation + (surveyAnswers.occupation_other ? ` (${surveyAnswers.occupation_other})` : ''),
-        '02_Ride_Frequency': surveyAnswers.ride_frequency,
-        '03_Ride_Purpose': surveyAnswers.ride_purpose,
-        '04_Smart_Devices': surveyAnswers.smart_devices.join(', ') + (surveyAnswers.smart_devices_other ? ` (Other: ${surveyAnswers.smart_devices_other})` : ''),
-        '05_Riding_Problems': surveyAnswers.riding_problems.join(', ') + (surveyAnswers.riding_problems_other ? ` (Other: ${surveyAnswers.riding_problems_other})` : ''),
-        '06_Biggest_Problem': surveyAnswers.biggest_problem,
-        '07_Dangerous_Situation': surveyAnswers.dangerous_experience,
-        '07b_Dangerous_Details': surveyAnswers.dangerous_experience_details || '—',
-
-        '08_Desired_Features': surveyAnswers.desired_features.join(', '),
-        '09_Product_Preference': surveyAnswers.product_preference,
-        '10a_SmartShield_Price': surveyAnswers.smartshield_price || '—',
-        '10b_ModSmart_Price': surveyAnswers.modsmart_price || '—',
-        '11_Purchase_Barriers': surveyAnswers.purchase_barriers.join(', ') + (surveyAnswers.purchase_barriers_other ? ` (Other: ${surveyAnswers.purchase_barriers_other})` : ''),
-
-        '12_Trust_Factors': surveyAnswers.trust_factors.join(', '),
-        '13_Purchase_Timeline': surveyAnswers.purchase_intent,
-        '14_Current_Helmet_Brand': surveyAnswers.current_helmet_brand || '—',
-        '15_Current_Helmet_Price': surveyAnswers.current_helmet_price || '—',
-        '16_Product_Wishlist': surveyAnswers.product_feedback || '—',
-
-        '17_Contact_Name': surveyAnswers.name || '—',
-        '18_Contact_Phone': surveyAnswers.phone || '—',
-        '19_Contact_Email': surveyAnswers.email || '—',
-        '20_Early_Access': surveyAnswers.early_access ? 'YES — Joined Early Access' : 'No — Survey Only'
+        "occupation": surveyAnswers.occupation + (surveyAnswers.occupation_other ? `, Other: ${surveyAnswers.occupation_other}` : ''),
+        "ride_frequency": surveyAnswers.ride_frequency,
+        "ride_purpose": surveyAnswers.ride_purpose,
+        "smart_devices": surveyAnswers.smart_devices.join(', ') + (surveyAnswers.smart_devices_other ? `, Other: ${surveyAnswers.smart_devices_other}` : ''),
+        "riding_problems": surveyAnswers.riding_problems.join(', ') + (surveyAnswers.riding_problems_other ? `, Other: ${surveyAnswers.riding_problems_other}` : ''),
+        "biggest_problem": surveyAnswers.biggest_problem,
+        "dangerous_experience": surveyAnswers.dangerous_experience,
+        "dangerous_experience_details": surveyAnswers.dangerous_experience_details || '',
+        "desired_features": surveyAnswers.desired_features.join(', '),
+        "product_preference": surveyAnswers.product_preference,
+        "smartshield_price": surveyAnswers.smartshield_price || '',
+        "modsmart_price": surveyAnswers.modsmart_price || '',
+        "purchase_barriers": surveyAnswers.purchase_barriers.join(', ') + (surveyAnswers.purchase_barriers_other ? `, Other: ${surveyAnswers.purchase_barriers_other}` : ''),
+        "trust_factors": surveyAnswers.trust_factors.join(', '),
+        "purchase_intent": surveyAnswers.purchase_intent,
+        "current_helmet_brand": surveyAnswers.current_helmet_brand || '',
+        "current_helmet_price": surveyAnswers.current_helmet_price || '',
+        "product_feedback": surveyAnswers.product_feedback || '',
+        "name": surveyAnswers.name || '',
+        "phone": surveyAnswers.phone || '',
+        "email": surveyAnswers.email || '',
+        "early_access": !!surveyAnswers.early_access
       };
 
       try {
-        const res = await fetch(`https://formspree.io/f/${FSPREE}`, {
+        const res = await fetch('https://script.google.com/macros/s/AKfycbwCXzDHQC9gUY_jLHzsCVqBPbmRBCf4huykSEkBiCCShaAL68ZeHKWY-nQaDZEaAAgxbw/exec', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Content-Type': 'text/plain;charset=utf-8'
           },
           body: JSON.stringify(payload)
         });
 
-        if (res.ok) {
+        let data = null;
+        try {
+          data = await res.json();
+        } catch (e) {
+          console.warn("Response was not JSON", e);
+        }
+
+        if (data && data.success) {
           // Hide form and footer inside the Mac window
           document.getElementById('pmf-survey-form').style.display = 'none';
           if (winFooter) winFooter.style.display = 'none';
@@ -4533,12 +4605,26 @@
             scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
           }
         } else {
-          submitBtn?.classList.remove('is-loading');
-          alert('There was an issue submitting your response. Please check your answers and try again.');
+          if (submitBtn) {
+            submitBtn.classList.remove('is-loading');
+            submitBtn.disabled = false;
+            submitBtn.style.pointerEvents = 'auto';
+            if (submitTxtSpan && submitTxtSpan !== submitBtn && originalText) {
+              submitTxtSpan.textContent = originalText;
+            }
+          }
+          alert('Something went wrong while submitting your response. Please try again.');
         }
       } catch (err) {
-        submitBtn?.classList.remove('is-loading');
-        alert('Network error. Please check your internet connection and try again.');
+        if (submitBtn) {
+          submitBtn.classList.remove('is-loading');
+          submitBtn.disabled = false;
+          submitBtn.style.pointerEvents = 'auto';
+          if (submitTxtSpan && submitTxtSpan !== submitBtn && originalText) {
+            submitTxtSpan.textContent = originalText;
+          }
+        }
+        alert('Something went wrong while submitting your response. Please try again.');
       }
     }
 
