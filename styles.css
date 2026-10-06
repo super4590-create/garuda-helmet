@@ -2618,17 +2618,21 @@
   height: 100vh;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.48;
+  opacity: 0.75;
 }
 
 /* Ensure clean transparency throughout the document */
-html, body {
+html {
   background: #0A1220 !important;
   background-color: #0A1220 !important;
 }
 
-body::before, body::after {
-  display: none !important;
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(61, 155, 255, 0.14), transparent 52%),
+    radial-gradient(ellipse at 8% 38%, rgba(11, 91, 211, 0.1), transparent 42%),
+    radial-gradient(ellipse at 92% 68%, rgba(255, 154, 31, 0.07), transparent 38%),
+    #0A1220 !important;
 }
 
 /* Top Navigation Header */
