@@ -89,12 +89,7 @@ body {
 }
 
 /* Ensure all interactive & layout content renders above Vanta */
-.site-header,
-#main-content,
-.site-footer,
-.sticky-bottom-nav,
-.image-lightbox,
-.toast-container {
+#main-content {
   position: relative;
   z-index: 1;
 }
@@ -1259,18 +1254,20 @@ input::placeholder, textarea::placeholder {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   9. STICKY BOTTOM NAV BAR (70% Translucent)
+   9. STICKY BOTTOM NAV BAR (Glassmorphic)
    ════════════════════════════════════════════════════════════════ */
 .sticky-bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 90;
-  background: rgba(10, 18, 32, 0.88);
+  z-index: 1000;
+  background: rgba(10, 18, 32, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--card-border);
-  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .sticky-nav-container {
@@ -1286,21 +1283,28 @@ input::placeholder, textarea::placeholder {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 16px;
+  padding: 10px 18px;
   min-height: 48px;
   border-radius: var(--r-pill);
   font-size: 14px;
   font-weight: 600;
   color: var(--c-slate);
-  background: rgba(20, 33, 58, 0.6);
+  background: rgba(20, 33, 58, 0.75);
   border: 1px solid var(--card-border);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-  transition: color var(--t-fast), border-color var(--t-fast);
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast), transform var(--t-fast);
 }
 
 .btn-nav-back:hover {
   color: #FFFFFF;
   border-color: var(--c-border-hover);
+  background: rgba(28, 46, 80, 0.9);
+  transform: translateY(-1px);
+}
+
+.btn-nav-back:active {
+  transform: translateY(0);
 }
 
 .btn-nav-back.is-hidden {
@@ -1328,21 +1332,27 @@ input::placeholder, textarea::placeholder {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   min-height: 48px;
   border-radius: var(--r-pill);
   font-size: 14px;
   font-weight: 700;
   color: #0A1220;
   background: linear-gradient(135deg, var(--c-amber), #FF8500);
-  box-shadow: 0 2px 10px var(--c-amber-glow);
+  box-shadow: 0 2px 12px var(--c-amber-glow);
   text-shadow: none;
-  transition: transform var(--t-fast), box-shadow var(--t-fast);
+  cursor: pointer;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), filter var(--t-fast);
 }
 
 .btn-nav-continue:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px var(--c-amber-glow);
+  box-shadow: 0 4px 18px var(--c-amber-glow);
+  filter: brightness(1.05);
+}
+
+.btn-nav-continue:active {
+  transform: translateY(0);
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -1576,10 +1586,12 @@ canvas.confetti-canvas, canvas[id^="confetti"] {
    13. SITE FOOTER
    ════════════════════════════════════════════════════════════════ */
 .site-footer {
-  background: rgba(6, 10, 18, 0.9);
+  background: rgba(6, 10, 18, 0.95);
   border-top: 1px solid var(--card-border);
-  padding: 36px 16px 28px;
+  padding: 36px 16px calc(90px + env(safe-area-inset-bottom));
   margin-top: 40px;
+  position: relative;
+  z-index: 1;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
