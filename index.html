@@ -2,1331 +2,1349 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartShield × ModSmart — Product-Market-Fit Survey | Angiras Industries</title>
-  <meta name="description" content="Help Angiras Industries build the next generation of smart helmet and upgrade technology in India. Share your feedback in 60–90 seconds.">
-  <meta name="theme-color" content="#06090e">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title id="meta-title">GARUDA Smart Helmet — Official Rider Survey | Angiras Industries</title>
+  <meta name="description" id="meta-desc" content="Help Angiras Industries build GARUDA — the next-generation smart helmet and upgrade kit with crash detection, SOS, and connected navigation. Take our survey.">
+  <meta name="theme-color" content="#0A1220">
 
-  <!-- Google Fonts: Inter & Space Grotesk -->
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" id="og-title" content="GARUDA Smart Helmet — Official Rider Survey">
+  <meta property="og:description" id="og-desc" content="One helmet. Crash detection. SOS. Navigation. Connected riding. Shape the future of rider safety in India.">
+  <meta property="og:image" content="assets/garuda-smart-helmet.webp">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="tw-title" content="GARUDA Smart Helmet — Official Rider Survey">
+  <meta name="twitter:description" id="tw-desc" content="One helmet. Crash detection. SOS. Navigation. Connected riding. Take our survey.">
+  <meta name="twitter:image" content="assets/garuda-smart-helmet.webp">
+
+  <!-- Google Fonts: Instrument Sans, Outfit & Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/Main product.jpg">
-  <link rel="preload" as="image" href="assets/Upgrading kit .png">
-
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div id="vanta-bg"></div>
+
+  <!-- Fixed Fullscreen Vanta Waves Background -->
+  <div id="vanta-bg" aria-hidden="true"></div>
 
   <!-- ════════════════════════════════════════════════════════════════
-       TOP HEADER
+       SITE HEADER
        ════════════════════════════════════════════════════════════════ -->
   <header class="site-header">
     <div class="header-container">
-      <a href="#" class="brand-link">
-        <img src="assets/angiras-logo.jpeg" alt="Angiras Industries" class="brand-logo-img" onerror="this.style.display='none'">
-        <div>
-          <div class="brand-title">ANGIRAS INDUSTRIES</div>
-          <div class="brand-subtitle">Smart Riding Tech</div>
+      <a href="#hero" class="brand-link" aria-label="GARUDA by Angiras Industries">
+        <img src="assets/angiras-logo.webp" alt="Angiras Logo" class="brand-logo-img" width="32" height="32" onerror="this.src='assets/angiras-logo.jpeg'">
+        <div class="brand-text">
+          <div class="brand-title">GARUDA</div>
+          <div class="brand-subtitle" data-i18n="brandSub">by Angiras Industries</div>
         </div>
       </a>
 
-      <div class="header-center-pill">
-        <span class="status-dot"></span>
-        <span>PMF RESEARCH · LIVE</span>
-      </div>
-
       <div class="header-actions">
-        <!-- Language Switcher: English / Hindi -->
-        <div class="lang-switch-wrap">
-          <button type="button" class="btn-lang is-active" id="lang-btn-en" onclick="setSurveyLang('en')">EN</button>
-          <span class="lang-divider">/</span>
-          <button type="button" class="btn-lang" id="lang-btn-hi" onclick="setSurveyLang('hi')">हिन्दी</button>
+        <!-- Language Switcher: EN / HI -->
+        <div class="lang-switch-wrap" role="group" aria-label="Language selector">
+          <button type="button" class="btn-lang is-active" id="lang-btn-en" onclick="setSurveyLang('en')" aria-label="Switch to English">EN</button>
+          <span class="lang-divider" aria-hidden="true">/</span>
+          <button type="button" class="btn-lang" id="lang-btn-hi" onclick="setSurveyLang('hi')" aria-label="हिन्दी में बदलें">हिन्दी</button>
         </div>
 
         <button type="button" class="btn-header-cta" onclick="startSurveyScroll()">
-          <span data-i18n="startSurvey">START SURVEY →</span>
+          <span data-i18n="startSurvey">Start Survey →</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ════════════════════════════════════════════════════════════════
-       HERO / INTRODUCTION (Clean Background Video & Glass Foreground)
-       ════════════════════════════════════════════════════════════════ -->
-  <section class="hero-section" id="hero">
-
-
-    <!-- Foreground Floating Content (Directly in front of background video) -->
-    <div class="hero-foreground-content">
-      <div class="hero-card-glass">
-        
-        <div class="hero-kicker-row">
-          <span class="hero-kicker" data-i18n="heroPresents">Angiras Industries Presents</span>
-          <span class="hero-kicker-dot">●</span>
-          <span class="hero-kicker" style="color:var(--c-pink-sand);" data-i18n="heroInnovation">Hardware Innovation</span>
+  <main id="main-content">
+    <!-- ════════════════════════════════════════════════════════════════
+         HERO SECTION
+         ════════════════════════════════════════════════════════════════ -->
+    <section class="hero-section" id="hero">
+      <div class="hero-card">
+        <div class="hero-badge-row">
+          <span class="hero-badge" data-i18n="heroBadge">Official Research · Angiras Industries</span>
         </div>
 
-        <h1 class="hero-main-title">
-          <span class="gradient-hero-text">SMARTSHIELD</span>
-          <span class="x-span">×</span>
-          <span class="gradient-hero-text">MODSMART</span>
+        <h1 class="hero-title">
+          <span class="hl-gradient">GARUDA</span> <span data-i18n="heroTitleSuffix">Smart Helmet</span>
         </h1>
 
-        <p class="hero-headline" data-i18n="heroHeadline">
-          "Help us build a smarter, safer riding experience."
+        <p class="hero-tagline" data-i18n="heroTagline">
+          One helmet. Crash detection. SOS. Navigation. Connected riding.
         </p>
 
-        <p class="hero-description" data-i18n="heroDesc">
-          Your 60–90 second answers will help shape what we build, what features matter most, and what riders are willing to pay.
+        <p class="hero-subtext" data-i18n="heroSubtext">
+          Take our rider survey and help shape GARUDA.
         </p>
 
         <div class="hero-cta-group">
-          <button type="button" class="btn-start-hero" onclick="startSurveyScroll()">
-            <span data-i18n="startSurvey">START SURVEY</span> <span class="arrow-icon">→</span>
+          <button type="button" class="btn-primary-hero" onclick="startSurveyScroll()">
+            <span data-i18n="startSurvey">Start Survey</span>
+            <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <div class="hero-meta-badge">
-            <span data-i18n="stepsMeta">3 STEPS</span>
-            <span class="dot">·</span>
-            <span data-i18n="timeMeta">60–90 SECONDS</span>
+          <div class="hero-meta-pill">
+            <span data-i18n="surveyMeta">15 questions · about 90 seconds</span>
           </div>
         </div>
 
-
-
-        <!-- Credibility ribbon -->
-        <div class="cred-ribbon">
-          <div class="cred-item"><span class="cred-dot">●</span> <span data-i18n="cred1">Govt. Recognised Startup</span></div>
-          <div class="cred-item"><span class="cred-dot">●</span> <span data-i18n="cred2">I-Hub GEC Raipur Incubated</span></div>
-          <div class="cred-item"><span class="cred-dot">●</span> <span data-i18n="cred3">Patent No. 202521123556</span></div>
-          <div class="cred-item"><span class="cred-dot">●</span> <span data-i18n="cred4">₹61K+ Prize Winner</span></div>
-        </div>
-
-        <!-- Animated Scroll Down Prompt -->
-        <div class="hero-scroll-indicator" onclick="startSurveyScroll()" role="button" tabindex="0" title="Scroll down to survey">
-          <div class="mouse-frame">
-            <div class="mouse-wheel"></div>
+        <!-- Credibility Ribbon -->
+        <div class="cred-ribbon" aria-label="Credentials and recognitions">
+          <div class="cred-item">
+            <span class="cred-dot" aria-hidden="true">●</span>
+            <span data-i18n="cred1">Govt. Recognised Startup</span>
           </div>
-          <div class="scroll-down-label">
-            <span data-i18n="scrollPrompt">SCROLL TO START</span>
-            <span class="scroll-down-chevron">▼</span>
+          <div class="cred-item">
+            <span class="cred-dot" aria-hidden="true">●</span>
+            <span data-i18n="cred2">I-Hub GEC Raipur Incubated</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-dot" aria-hidden="true">●</span>
+            <span data-i18n="cred3">Patent No. 202521123556</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-dot" aria-hidden="true">●</span>
+            <span data-i18n="cred4">₹61K+ Prize Winner</span>
           </div>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ════════════════════════════════════════════════════════════════
-       STEP INDICATOR
-       Visually inspired by attached sketch: ① -------- ② -------- ③
-       ════════════════════════════════════════════════════════════════ -->
-  <section class="step-indicator-section" id="step-indicator">
-    <div class="steps-nav-container">
-      <div class="steps-track-bg">
-        <div class="steps-track-progress" id="steps-track-progress"></div>
+    <!-- ════════════════════════════════════════════════════════════════
+         STEP TRACKER
+         ════════════════════════════════════════════════════════════════ -->
+    <nav class="step-tracker-section" id="step-indicator" aria-label="Survey steps">
+      <div class="steps-nav-container">
+        <div class="steps-track-bg" aria-hidden="true">
+          <div class="steps-track-progress" id="steps-track-progress"></div>
+        </div>
+
+        <!-- Step 1 -->
+        <button type="button" class="step-node-btn is-active" id="node-step-1" onclick="jumpToStep(1)" aria-label="Step 1: You - Rider Profile" aria-current="step">
+          <div class="step-circle">
+            <span class="step-num">01</span>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-meta">
+            <span class="step-label" data-i18n="step1Label">01 YOU</span>
+            <span class="step-desc" data-i18n="step1Desc">Rider Profile</span>
+          </div>
+        </button>
+
+        <!-- Step 2 -->
+        <button type="button" class="step-node-btn" id="node-step-2" onclick="jumpToStep(2)" aria-label="Step 2: Product - Features & Price">
+          <div class="step-circle">
+            <span class="step-num">02</span>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-meta">
+            <span class="step-label" data-i18n="step2Label">02 PRODUCT</span>
+            <span class="step-desc" data-i18n="step2Desc">Features & Price</span>
+          </div>
+        </button>
+
+        <!-- Step 3 -->
+        <button type="button" class="step-node-btn" id="node-step-3" onclick="jumpToStep(3)" aria-label="Step 3: Trust - Early Access">
+          <div class="step-circle">
+            <span class="step-num">03</span>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-meta">
+            <span class="step-label" data-i18n="step3Label">03 TRUST</span>
+            <span class="step-desc" data-i18n="step3Desc">Early Access</span>
+          </div>
+        </button>
       </div>
+    </nav>
 
-      <!-- Step 1 -->
-      <div class="step-node-item is-active" id="node-step-1" onclick="jumpToStep(1)">
-        <div class="step-circle">
-          <span class="step-num">01</span>
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <!-- ════════════════════════════════════════════════════════════════
+         SURVEY MAIN BODY
+         ════════════════════════════════════════════════════════════════ -->
+    <section class="survey-section" id="survey-stage">
+      <div class="survey-container">
+
+        <!-- Top Micro Progress Bar -->
+        <div class="survey-progress-bar-wrap" aria-hidden="true">
+          <div class="survey-progress-bar-fill" id="survey-mini-progress"></div>
         </div>
-        <div class="step-meta">
-          <div class="step-label" data-i18n="step1Label">01 YOU</div>
-          <span class="step-desc" data-i18n="step1Desc">Rider Profile</span>
-        </div>
-      </div>
 
-      <!-- Step 2 -->
-      <div class="step-node-item" id="node-step-2" onclick="jumpToStep(2)">
-        <div class="step-circle">
-          <span class="step-num">02</span>
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="step-meta">
-          <div class="step-label" data-i18n="step2Label">02 PRODUCT</div>
-          <span class="step-desc" data-i18n="step2Desc">Features &amp; Price</span>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="step-node-item" id="node-step-3" onclick="jumpToStep(3)">
-        <div class="step-circle">
-          <span class="step-num">03</span>
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="step-meta">
-          <div class="step-label" data-i18n="step3Label">03 TRUST</div>
-          <span class="step-desc" data-i18n="step3Desc">Early Access</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════════════════════════
-       SURVEY FORM & SCROLL SECTION
-       ════════════════════════════════════════════════════════════════ -->
-  <section class="survey-scroll-stage" id="survey-stage">
-    <div class="survey-window-sticky-wrap">
-
-      <!-- Plain survey container; retained IDs support existing survey logic. -->
-      <div class="mac-window" id="mac-app-window">
-
-        <!-- Survey form content -->
-        <div class="mac-window-body" id="mac-window-scrollable">
-          <form id="pmf-survey-form" onsubmit="event.preventDefault();">
-
-            <!-- ══════════════════════════════════════════════════
-                 PAGE 1: YOU (Rider Profile + Problems)
-                 ══════════════════════════════════════════════════ -->
-            <div class="survey-pane is-active" id="pane-step-1">
-              <div class="pane-header">
-                <div class="pane-tag" data-i18n="p1Tag">01 — YOU · STEP 1 OF 3</div>
-                <h2 class="pane-title" data-i18n="p1Title">TELL US ABOUT <span class="hl-blue">YOUR RIDE</span></h2>
-                <p class="pane-subtitle" data-i18n="p1Subtitle">Help us understand how you ride and what gets in your way.</p>
-              </div>
-
-              <!-- Question 1: Occupation -->
-              <div class="question-card" id="card-q1">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q1Title">1. What do you do? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q1Helper">Select your primary occupation</p>
-                <div class="choices-grid cols-3">
-                  <div class="choice-item">
-                    <input type="radio" name="occupation" id="occ_1" value="Student">
-                    <label class="choice-label" for="occ_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="occ_student">Student</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="occupation" id="occ_2" value="Job / Employee">
-                    <label class="choice-label" for="occ_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="occ_job">Job / Employee</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="occupation" id="occ_3" value="Business">
-                    <label class="choice-label" for="occ_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="occ_business">Business</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="occupation" id="occ_4" value="Delivery / Gig Worker">
-                    <label class="choice-label" for="occ_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="occ_gig">Delivery / Gig Worker</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="occupation" id="occ_5" value="Freelancer">
-                    <label class="choice-label" for="occ_5">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="occ_freelance">Freelancer</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="occupation" id="occ_6" value="Other">
-                    <label class="choice-label" for="occ_6">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="occ_other">Other</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="other-input-reveal" id="occ-other-box">
-                  <input type="text" id="occ_other_val" placeholder="Specify your occupation..." data-i18n-ph="occ_ph" autocomplete="off">
-                </div>
-                <div class="error-text-hint" id="err-hint-q1" data-i18n="err_q1">Please select what you do.</div>
-              </div>
-
-              <!-- Question 2: Ride Frequency -->
-              <div class="question-card" id="card-q2">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q2Title">2. How often do you ride? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q2Helper">Your average weekly riding routine</p>
-                <div class="choices-grid cols-2">
-                  <div class="choice-item">
-                    <input type="radio" name="ride_frequency" id="rf_1" value="Daily">
-                    <label class="choice-label" for="rf_1">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="rf_daily">Daily</span><span class="c-subtext" data-i18n="rf_daily_sub">5+ days every week</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="ride_frequency" id="rf_2" value="3–5 days/week">
-                    <label class="choice-label" for="rf_2">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="rf_3to5">3–5 days/week</span><span class="c-subtext" data-i18n="rf_3to5_sub">Regular weekday commute</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="ride_frequency" id="rf_3" value="1–2 days/week">
-                    <label class="choice-label" for="rf_3">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="rf_1to2">1–2 days/week</span><span class="c-subtext" data-i18n="rf_1to2_sub">Occasional trips or errands</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="ride_frequency" id="rf_4" value="Occasionally">
-                    <label class="choice-label" for="rf_4">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="rf_occ">Occasionally</span><span class="c-subtext" data-i18n="rf_occ_sub">Once or twice a month</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-q2" data-i18n="err_q2">Please select your riding frequency.</div>
-              </div>
-
-              <!-- Question 3: Ride Purpose -->
-              <div class="question-card" id="card-q3">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q3Title">3. What do you mainly ride for? <span class="req-star">*</span></span>
-                  <span class="selection-counter" id="rp-badge-counter">0 / 3 selected</span>
-                </div>
-                <p class="q-helper" data-i18n="q3Helper">Choose up to 3.</p>
-                <div class="choices-grid cols-3">
-                  <div class="choice-item">
-                    <input type="checkbox" name="ride_purpose" id="rp_1" value="Office">
-                    <label class="choice-label" for="rp_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="rp_office">Office</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="ride_purpose" id="rp_2" value="College">
-                    <label class="choice-label" for="rp_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="rp_college">College</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="ride_purpose" id="rp_3" value="Work / Business">
-                    <label class="choice-label" for="rp_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="rp_work">Work / Business</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="ride_purpose" id="rp_4" value="Delivery">
-                    <label class="choice-label" for="rp_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="rp_delivery">Delivery</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="ride_purpose" id="rp_5" value="Touring / Long Ride">
-                    <label class="choice-label" for="rp_5">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="rp_touring">Touring / Long Ride</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="ride_purpose" id="rp_6" value="Personal">
-                    <label class="choice-label" for="rp_6">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="rp_personal">Personal</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-q3" data-i18n="err_q3">Please select what you mainly ride for.</div>
-              </div>
-
-              <!-- Question 4: Smart Devices -->
-              <div class="question-card" id="card-q4">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q4Title">4. Do you currently use any smart / connected device? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q4Helper">Select all that apply.</p>
-                <div class="choices-grid cols-2">
-                  <div class="choice-item">
-                    <input type="checkbox" name="smart_devices" id="sd_1" value="Smartwatch">
-                    <label class="choice-label" for="sd_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="sd_watch">Smartwatch</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="smart_devices" id="sd_2" value="Smart Band / Fitness Band">
-                    <label class="choice-label" for="sd_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="sd_band">Smart Band / Fitness Band</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="smart_devices" id="sd_3" value="Smart Earbuds / Bluetooth Device">
-                    <label class="choice-label" for="sd_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="sd_earbuds">Smart Earbuds / Bluetooth Device</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="smart_devices" id="sd_4" value="Smart Home / IoT Device">
-                    <label class="choice-label" for="sd_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="sd_home">Smart Home / IoT Device</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="smart_devices" id="sd_5" value="Other">
-                    <label class="choice-label" for="sd_5">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="sd_other">Other</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="smart_devices" id="sd_6" value="None">
-                    <label class="choice-label" for="sd_6">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="sd_none">None</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="other-input-reveal" id="sd-other-box">
-                  <input type="text" id="sd_other_val" placeholder="Specify device..." data-i18n-ph="sd_ph" autocomplete="off">
-                </div>
-                <div class="error-text-hint" id="err-hint-q4" data-i18n="err_q4">Please choose at least one option (or 'None').</div>
-              </div>
-
-              <!-- Question 5: Riding Problems -->
-              <div class="question-card" id="card-q5">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q5Title">5. What problems do you face while riding? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q5Helper">Select all that apply.</p>
-                <div class="choices-grid cols-2">
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_1" value="Phone Calls">
-                    <label class="choice-label" for="pr_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_calls">Phone Calls</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_2" value="Navigation">
-                    <label class="choice-label" for="pr_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_nav">Navigation</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_3" value="Potholes / Bad Roads">
-                    <label class="choice-label" for="pr_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_roads">Potholes / Bad Roads</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_4" value="Heavy Traffic">
-                    <label class="choice-label" for="pr_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_traffic">Heavy Traffic</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_5" value="Rain / Poor Visibility">
-                    <label class="choice-label" for="pr_5">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_rain">Rain / Poor Visibility</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_6" value="Heat Inside Helmet">
-                    <label class="choice-label" for="pr_6">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_heat">Heat Inside Helmet</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_7" value="Fatigue / Long Rides">
-                    <label class="choice-label" for="pr_7">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_fatigue">Fatigue / Long Rides</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_8" value="Emergency / Accident Situations">
-                    <label class="choice-label" for="pr_8">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_sos">Emergency / Accident Situations</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_9" value="Group Communication">
-                    <label class="choice-label" for="pr_9">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_group">Group Communication</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_10" value="Difficulty Hearing Audio">
-                    <label class="choice-label" for="pr_10">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_audio">Difficulty Hearing Audio</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="riding_problems" id="pr_11" value="Other">
-                    <label class="choice-label" for="pr_11">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="pr_other">Other</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="other-input-reveal" id="pr-other-box">
-                  <input type="text" id="pr_other_val" placeholder="Describe other problem..." data-i18n-ph="pr_ph" autocomplete="off">
-                </div>
-                <div class="error-text-hint" id="err-hint-q5" data-i18n="err_q5">Please select at least one riding problem.</div>
-              </div>
-
-              <!-- Question 6: #1 Biggest Problem -->
-              <div class="question-card" id="card-q6">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q6Title">6. What's your #1 biggest riding problem? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q6Helper">Only one selection — your single greatest frustration</p>
-                <div class="choices-grid cols-3">
-                  <div class="choice-item">
-                    <input type="radio" name="biggest_problem" id="bp_1" value="Safety">
-                    <label class="choice-label" for="bp_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bp_safety">Safety</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="biggest_problem" id="bp_2" value="Navigation">
-                    <label class="choice-label" for="bp_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bp_nav">Navigation</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="biggest_problem" id="bp_3" value="Communication">
-                    <label class="choice-label" for="bp_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bp_comm">Communication</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="biggest_problem" id="bp_4" value="Traffic / Roads">
-                    <label class="choice-label" for="bp_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bp_traffic">Traffic / Roads</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="biggest_problem" id="bp_5" value="Heat / Comfort">
-                    <label class="choice-label" for="bp_5">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bp_heat">Heat / Comfort</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="biggest_problem" id="bp_6" value="Emergency Situations">
-                    <label class="choice-label" for="bp_6">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bp_emergency">Emergency Situations</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-q6" data-i18n="err_q6">Please select your #1 biggest problem.</div>
-              </div>
-
-              <!-- Question 7: Dangerous Riding Situation -->
-              <div class="question-card" id="card-q7">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q7Title">7. Have you ever experienced a difficult or dangerous riding situation? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q7Helper">Critical context for our safety engineering</p>
-                <div class="choices-grid cols-2">
-                  <div class="choice-item">
-                    <input type="radio" name="dangerous_experience" id="de_1" value="Serious Accident">
-                    <label class="choice-label" for="de_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="de_serious">Serious Accident</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="dangerous_experience" id="de_2" value="Near Miss">
-                    <label class="choice-label" for="de_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="de_nearmiss">Near Miss</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="dangerous_experience" id="de_3" value="Dangerous Situation — No Accident">
-                    <label class="choice-label" for="de_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="de_danger">Dangerous Situation — No Accident</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="dangerous_experience" id="de_4" value="No">
-                    <label class="choice-label" for="de_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="de_no">No</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div style="margin-top:16px;">
-                  <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:8px;" data-i18n="de_lbl">
-                    If you're comfortable, briefly tell us what happened: <span style="color:var(--c-dark-sand);">(optional)</span>
-                  </label>
-                  <textarea id="de_details_val" placeholder="e.g. Blind turn at night, unexpected gravel, sudden brake by vehicle ahead..." data-i18n-ph="de_ph"></textarea>
-                </div>
-                <div class="error-text-hint" id="err-hint-q7" data-i18n="err_q7">Please select an option for question 7.</div>
-              </div>
-
-            </div>
-
-            <!-- ══════════════════════════════════════════════════
-                 PAGE 2: PRODUCT (Features + Product + Price + Barriers)
-                 ══════════════════════════════════════════════════ -->
-            <div class="survey-pane" id="pane-step-2">
-              <div class="pane-header">
-                <div class="pane-tag" data-i18n="p2Tag">02 — PRODUCT · STEP 2 OF 3</div>
-                <h2 class="pane-title" data-i18n="p2Title">WHAT WOULD YOU <span class="hl-blue">ACTUALLY BUY?</span></h2>
-                <p class="pane-subtitle" data-i18n="p2Subtitle">Tell us which smart riding experience makes the most sense for you.</p>
-              </div>
-
-              <!-- Question 1: Desired Features (Choose up to 3) -->
-              <div class="question-card" id="card-p2-q1">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q2_1Title">1. Which features would be most useful to you? <span class="req-star">*</span></span>
-                  <span class="selection-counter" id="feat-badge-counter">0 / 5 selected</span>
-                </div>
-                <p class="q-helper" data-i18n="q2_1Helper">Choose up to 5.</p>
-                <div class="choices-grid cols-2" id="feat-choices-container">
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_1" value="AI Safety / Crash Detection">
-                    <label class="choice-label" for="ft_1">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft1">AI Safety / Crash Detection</span><span class="c-subtext" data-i18n="ft1_sub">Collision sensing &amp; alert</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_2" value="Emergency SOS">
-                    <label class="choice-label" for="ft_2">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft2">Emergency SOS</span><span class="c-subtext" data-i18n="ft2_sub">One-touch emergency beacon</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_3" value="Navigation Audio">
-                    <label class="choice-label" for="ft_3">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft3">Navigation Audio</span><span class="c-subtext" data-i18n="ft3_sub">In-helmet spoken turn directions</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_4" value="Hands-Free Calls">
-                    <label class="choice-label" for="ft_4">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft4">Hands-Free Calls</span><span class="c-subtext" data-i18n="ft4_sub">Wind noise cancelling voice clarity</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_5" value="Music / Podcasts">
-                    <label class="choice-label" for="ft_5">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft5">Music / Podcasts</span><span class="c-subtext" data-i18n="ft5_sub">Integrated stereo audio drivers</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_6" value="Bluetooth Group Intercom">
-                    <label class="choice-label" for="ft_6">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft6">Bluetooth Group Intercom</span><span class="c-subtext" data-i18n="ft6_sub">Rider-to-rider direct comms</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_7" value="Voice Assistant">
-                    <label class="choice-label" for="ft_7">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft7">Voice Assistant</span><span class="c-subtext" data-i18n="ft7_sub">Google Assistant &amp; Siri support</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="desired_features" id="ft_8" value="AI Speed / Safety Alerts">
-                    <label class="choice-label" for="ft_8">
-                      <span class="choice-left">
-                        <span class="choice-icon"></span>
-                        <span class="choice-text-col"><span class="c-text" data-i18n="ft8">AI Speed / Safety Alerts</span><span class="c-subtext" data-i18n="ft8_sub">Fatigue and speed hazard cues</span></span>
-                      </span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-p2-q1" data-i18n="err_p2_q1">Please select between 1 and 3 features.</div>
-              </div>
-
-              <!-- Question 2: Product Preference -->
-              <div class="question-card" id="card-p2-q2">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q2_2Title">2. Which product would you prefer? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q2_2Helper">Select the smart riding experience that fits your setup</p>
-
-                <div class="product-cards-grid">
-                  <!-- SmartShield Full AI Helmet -->
-                  <div class="product-card-opt">
-                    <input type="radio" name="product_preference" id="pref_sh" value="SmartShield">
-                    <label class="product-card-wrap" for="pref_sh">
-                      <div class="p-card-media" onclick="event.preventDefault(); event.stopPropagation(); selectAndOpenLightbox('pref_sh', 'assets/Main product.jpg', 'SMARTSHIELD — Full AI Smart Helmet');" style="cursor: zoom-in;" title="Click to view full image">
-                        <img src="assets/Main product.jpg" alt="SmartShield Full AI Smart Helmet" onerror="this.src='assets/main-product.jpg'">
-                        <span class="p-card-badge" data-i18n="p_sh_badge">Full Helmet</span>
-                        <span class="p-card-check"></span>
-                        <button type="button" class="zoom-hint-btn" onclick="event.preventDefault(); event.stopPropagation(); selectAndOpenLightbox('pref_sh', 'assets/Main product.jpg', 'SMARTSHIELD — Full AI Smart Helmet');" title="View Full Image">
-                          View Image
-                        </button>
-                      </div>
-                      <div class="p-card-content">
-                        <div class="p-card-title">SMARTSHIELD</div>
-                        <div class="p-card-sub" data-i18n="p_sh_sub">Full AI Smart Helmet</div>
-                        <div class="p-card-price-range">₹2,000–₹6,000</div>
-                        <ul class="p-card-features">
-                          <li>Smart safety</li>
-                          <li>Bluetooth</li>
-                          <li>Navigation</li>
-                          <li>SOS</li>
-                          <li>Hands-free calls</li>
-                          <li>AI features</li>
-                          <li>Complete new helmet</li>
-                        </ul>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- ModSmart Upgrade Module -->
-                  <div class="product-card-opt">
-                    <input type="radio" name="product_preference" id="pref_ms" value="ModSmart">
-                    <label class="product-card-wrap" for="pref_ms">
-                      <div class="p-card-media" onclick="event.preventDefault(); event.stopPropagation(); selectAndOpenLightbox('pref_ms', 'assets/Upgrading kit .png', 'MODSMART — Upgrade Your Existing Helmet');" style="cursor: zoom-in;" title="Click to view full image">
-                        <img src="assets/Upgrading kit .png" alt="ModSmart Upgrade Module" onerror="this.src='assets/upgrading-kit.png'">
-                        <span class="p-card-badge" data-i18n="p_ms_badge">Upgrade Module</span>
-                        <span class="p-card-check"></span>
-                        <button type="button" class="zoom-hint-btn" onclick="event.preventDefault(); event.stopPropagation(); selectAndOpenLightbox('pref_ms', 'assets/Upgrading kit .png', 'MODSMART — Upgrade Your Existing Helmet');" title="View Full Image">
-                          View Image
-                        </button>
-                      </div>
-                      <div class="p-card-content">
-                        <div class="p-card-title">MODSMART</div>
-                        <div class="p-card-sub" data-i18n="p_ms_sub">Upgrade Your Existing Helmet</div>
-                        <div class="p-card-price-range">₹1,500–₹3,500</div>
-                        <ul class="p-card-features">
-                          <li>Works with existing helmet</li>
-                          <li>Bluetooth</li>
-                          <li>Navigation</li>
-                          <li>Calls</li>
-                          <li>Smart features</li>
-                          <li>Easy installation</li>
-                        </ul>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="product-secondary-grid">
-                  <div class="choice-item">
-                    <input type="radio" name="product_preference" id="pref_both" value="Both / Depends on Features">
-                    <label class="choice-label" for="pref_both">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="p_both">Both / Depends on Features</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="radio" name="product_preference" id="pref_unsure" value="Not Sure">
-                    <label class="choice-label" for="pref_unsure">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="p_unsure">Not Sure</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-p2-q2" data-i18n="err_p2_q2">Please select which product you would prefer.</div>
-              </div>
-
-              <!-- Question 3: Dynamic Price Cards -->
-              <div class="question-card" id="card-p2-q3">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q2_3Title">3. What's an acceptable price for you? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" id="price-card-prompt" data-i18n="q2_3Helper">Select the price tier that feels justified for you</p>
-
-                <!-- SmartShield Pricing Tier -->
-                <div class="pricing-group-card" id="sh-pricing-block">
-                  <div class="pricing-group-header">
-                    <span class="pricing-group-title">
-                      <img src="assets/Main product.jpg" alt="SmartShield" class="pricing-thumb" onclick="event.stopPropagation(); openLightbox('assets/Main product.jpg', 'SMARTSHIELD — Full AI Smart Helmet');" onerror="this.src='assets/main-product.jpg'" title="Click to view full image">
-                      SMARTSHIELD (Full AI Helmet)
-                    </span>
-                    <span style="font-size:11px;color:var(--text-muted);">Target: ₹2,000–₹6,000+</span>
-                  </div>
-                  <div class="price-pill-grid">
-                    <div class="price-pill-item">
-                      <input type="radio" name="smartshield_price" id="shp_2000" value="₹2,000">
-                      <label class="price-pill-label" for="shp_2000">
-                        <span class="price-number">₹2,000</span>
-                        <span class="price-desc">Entry</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="smartshield_price" id="shp_3000" value="₹3,000">
-                      <label class="price-pill-label" for="shp_3000">
-                        <span class="price-number">₹3,000</span>
-                        <span class="price-desc">Value</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="smartshield_price" id="shp_4000" value="₹4,000">
-                      <label class="price-pill-label" for="shp_4000">
-                        <span class="price-number">₹4,000</span>
-                        <span class="price-desc">Balanced</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="smartshield_price" id="shp_5000" value="₹5,000">
-                      <label class="price-pill-label" for="shp_5000">
-                        <span class="price-number">₹5,000</span>
-                        <span class="price-desc">Premium</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="smartshield_price" id="shp_6000" value="₹6,000+">
-                      <label class="price-pill-label" for="shp_6000">
-                        <span class="price-number">₹6,000+</span>
-                        <span class="price-desc">Flagship</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- ModSmart Pricing Tier -->
-                <div class="pricing-group-card" id="ms-pricing-block">
-                  <div class="pricing-group-header">
-                    <span class="pricing-group-title">
-                      <img src="assets/Upgrading kit .png" alt="ModSmart" class="pricing-thumb" onclick="event.stopPropagation(); openLightbox('assets/Upgrading kit .png', 'MODSMART — Upgrade Your Existing Helmet');" onerror="this.src='assets/upgrading-kit.png'" title="Click to view full image">
-                      MODSMART (Upgrade Module)
-                    </span>
-                    <span style="font-size:11px;color:var(--text-muted);">Target: ₹1,500–₹3,500+</span>
-                  </div>
-                  <div class="price-pill-grid">
-                    <div class="price-pill-item">
-                      <input type="radio" name="modsmart_price" id="msp_1500" value="₹1,500">
-                      <label class="price-pill-label" for="msp_1500">
-                        <span class="price-number">₹1,500</span>
-                        <span class="price-desc">Accessible</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="modsmart_price" id="msp_2000" value="₹2,000">
-                      <label class="price-pill-label" for="msp_2000">
-                        <span class="price-number">₹2,000</span>
-                        <span class="price-desc">Sweet Spot</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="modsmart_price" id="msp_2500" value="₹2,500">
-                      <label class="price-pill-label" for="msp_2500">
-                        <span class="price-number">₹2,500</span>
-                        <span class="price-desc">Standard</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="modsmart_price" id="msp_3000" value="₹3,000">
-                      <label class="price-pill-label" for="msp_3000">
-                        <span class="price-number">₹3,000</span>
-                        <span class="price-desc">Upper</span>
-                      </label>
-                    </div>
-                    <div class="price-pill-item">
-                      <input type="radio" name="modsmart_price" id="msp_3500" value="₹3,500+">
-                      <label class="price-pill-label" for="msp_3500">
-                        <span class="price-number">₹3,500+</span>
-                        <span class="price-desc">Full Kit</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-p2-q3" data-i18n="err_p2_q3">Please select an acceptable price point.</div>
-              </div>
-
-              <!-- Question 4: Purchase Barriers (Choose up to 2) -->
-              <div class="question-card" id="card-p2-q4">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q2_4Title">4. What could stop you from buying? <span class="req-star">*</span></span>
-                  <span class="selection-counter" id="barrier-badge-counter">0 / 4 selected</span>
-                </div>
-                <p class="q-helper" data-i18n="q2_4Helper">Choose up to 4.</p>
-                <div class="choices-grid cols-2" id="barrier-choices-container">
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_1" value="Price">
-                    <label class="choice-label" for="bar_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_price">Price</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_2" value="Battery / Charging">
-                    <label class="choice-label" for="bar_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_battery">Battery / Charging</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_3" value="Extra Weight">
-                    <label class="choice-label" for="bar_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_weight">Extra Weight</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_4" value="Installation">
-                    <label class="choice-label" for="bar_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_install">Installation</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_5" value="Safety / Certification">
-                    <label class="choice-label" for="bar_5">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_safety">Safety / Certification</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_6" value="Helmet Compatibility">
-                    <label class="choice-label" for="bar_6">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_compat">Helmet Compatibility</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_7" value="Waterproofing">
-                    <label class="choice-label" for="bar_7">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_water">Waterproofing</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_8" value="Design / Looks">
-                    <label class="choice-label" for="bar_8">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_looks">Design / Looks</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_9" value="Brand Trust">
-                    <label class="choice-label" for="bar_9">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_trust">Brand Trust</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="purchase_barriers" id="bar_10" value="Other">
-                    <label class="choice-label" for="bar_10">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="bar_other">Other</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="other-input-reveal" id="bar-other-box">
-                  <input type="text" id="bar_other_val" placeholder="Specify barrier..." data-i18n-ph="bar_ph" autocomplete="off">
-                </div>
-                <div class="error-text-hint" id="err-hint-p2-q4" data-i18n="err_p2_q4">Please choose 1 or 2 purchase barriers.</div>
-              </div>
-
-            </div>
-
-            <!-- ══════════════════════════════════════════════════
-                 PAGE 3: TRUST + ACCESS (Trust + Purchase + Helmet + Early Access)
-                 ══════════════════════════════════════════════════ -->
-            <div class="survey-pane" id="pane-step-3">
-              <div class="pane-header">
-                <div class="pane-tag" data-i18n="p3Tag">03 — TRUST &amp; ACCESS · STEP 3 OF 3</div>
-                <h2 class="pane-title" data-i18n="p3Title">WOULD YOU TRUST &amp; <span class="hl-blue">TRY IT?</span></h2>
-                <p class="pane-subtitle" data-i18n="p3Subtitle">Tell us what would give you confidence to choose SmartShield or ModSmart.</p>
-              </div>
-
-              <!-- Question 1: Trust Factors (Choose up to 3) -->
-              <div class="question-card" id="card-p3-q1">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q3_1Title">1. What would make you trust the product? <span class="req-star">*</span></span>
-                  <span class="selection-counter" id="trust-badge-counter">0 / 5 selected</span>
-                </div>
-                <p class="q-helper" data-i18n="q3_1Helper">Choose up to 5.</p>
-                <div class="choices-grid cols-3" id="trust-choices-container">
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_1" value="ISI / BIS Certification">
-                    <label class="choice-label" for="tf_1">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_isi">ISI / BIS Certification</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_2" value="Crash Testing">
-                    <label class="choice-label" for="tf_2">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_crash">Crash Testing</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_3" value="Strong Warranty">
-                    <label class="choice-label" for="tf_3">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_warranty">Strong Warranty</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_4" value="Waterproofing">
-                    <label class="choice-label" for="tf_4">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_water">Waterproofing</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_5" value="Battery Safety">
-                    <label class="choice-label" for="tf_5">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_battery">Battery Safety</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_6" value="Real Rider Reviews">
-                    <label class="choice-label" for="tf_6">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_reviews">Real Rider Reviews</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_7" value="Brand Reputation">
-                    <label class="choice-label" for="tf_7">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_reputation">Brand Reputation</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_8" value="Product Demo / Test Ride">
-                    <label class="choice-label" for="tf_8">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_demo">Product Demo / Test Ride</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                  <div class="choice-item">
-                    <input type="checkbox" name="trust_factors" id="tf_9" value="Made in India">
-                    <label class="choice-label" for="tf_9">
-                      <span class="choice-left"><span class="choice-icon"></span><span class="c-text" data-i18n="tf_india">Made in India</span></span>
-                      <span class="c-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-p3-q1" data-i18n="err_p3_q1">Please select 1 to 3 trust factors.</div>
-              </div>
-
-              <!-- Question 2: Purchase Intent -->
-              <div class="question-card" id="card-p3-q2">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q3_2Title">2. When would you buy it? <span class="req-star">*</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q3_2Helper">Your genuine purchase timeline</p>
-                <div class="purchase-intent-grid">
-                  <div class="intent-option">
-                    <input type="radio" name="purchase_intent" id="pi_1" value="I would buy immediately">
-                    <label class="intent-label" for="pi_1">
-                      <span class="intent-icon"></span>
-                      <div>
-                        <div class="intent-name" data-i18n="pi_immediate">I would buy immediately</div>
-                        <div class="intent-info" data-i18n="pi_immediate_sub">Ready to pre-order or purchase right at launch.</div>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="intent-option">
-                    <input type="radio" name="purchase_intent" id="pi_2" value="I would seriously consider it">
-                    <label class="intent-label" for="pi_2">
-                      <span class="intent-icon"></span>
-                      <div>
-                        <div class="intent-name" data-i18n="pi_consider">I would seriously consider it</div>
-                        <div class="intent-info" data-i18n="pi_consider_sub">Strong intent once reviews and demo rides appear.</div>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="intent-option">
-                    <input type="radio" name="purchase_intent" id="pi_3" value="Need more information">
-                    <label class="intent-label" for="pi_3">
-                      <span class="intent-icon"></span>
-                      <div>
-                        <div class="intent-name" data-i18n="pi_info">Need more information</div>
-                        <div class="intent-info" data-i18n="pi_info_sub">Want to see official crash test data and warranty.</div>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="intent-option">
-                    <input type="radio" name="purchase_intent" id="pi_4" value="Not interested right now">
-                    <label class="intent-label" for="pi_4">
-                      <span class="intent-icon"></span>
-                      <div>
-                        <div class="intent-name" data-i18n="pi_notyet">Not interested right now</div>
-                        <div class="intent-info" data-i18n="pi_notyet_sub">Satisfied with my current helmet setup.</div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-p3-q2" data-i18n="err_p3_q2">Please select your purchase timeline.</div>
-              </div>
-
-              <!-- Question 3: Current Helmet -->
-              <div class="question-card" id="card-p3-q3">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q3_3Title">3. Tell us about your current helmet</span>
-                </div>
-                <p class="q-helper" data-i18n="q3_3Helper">Helps our engineering and pricing benchmarking</p>
-
-                <div style="margin-bottom:18px;">
-                  <label style="display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:6px;" data-i18n="cur_brand_lbl">
-                    Current helmet brand <span style="color:var(--c-dark-sand);font-weight:400;">(optional)</span>
-                  </label>
-                  <input type="text" id="cur_helmet_brand_val" placeholder="e.g. Steelbird, Vega, Studds, Axor, MT, SMK..." data-i18n-ph="cur_brand_ph" autocomplete="off">
-                </div>
-
-                <div>
-                  <label style="display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px;" data-i18n="cur_price_lbl">
-                    Approximate current helmet price <span class="req-star">*</span>
-                  </label>
-                  <div class="choices-grid cols-3">
-                    <div class="choice-item">
-                      <input type="radio" name="current_helmet_price" id="chp_1" value="Under ₹1,000">
-                      <label class="choice-label" for="chp_1">
-                        <span class="choice-left"><span class="c-text" data-i18n="chp1">Under ₹1,000</span></span>
-                        <span class="c-indicator"></span>
-                      </label>
-                    </div>
-                    <div class="choice-item">
-                      <input type="radio" name="current_helmet_price" id="chp_2" value="₹1,000–₹2,000">
-                      <label class="choice-label" for="chp_2">
-                        <span class="choice-left"><span class="c-text" data-i18n="chp2">₹1,000–₹2,000</span></span>
-                        <span class="c-indicator"></span>
-                      </label>
-                    </div>
-                    <div class="choice-item">
-                      <input type="radio" name="current_helmet_price" id="chp_3" value="₹2,000–₹3,500">
-                      <label class="choice-label" for="chp_3">
-                        <span class="choice-left"><span class="c-text" data-i18n="chp3">₹2,000–₹3,500</span></span>
-                        <span class="c-indicator"></span>
-                      </label>
-                    </div>
-                    <div class="choice-item">
-                      <input type="radio" name="current_helmet_price" id="chp_4" value="₹3,500–₹6,000">
-                      <label class="choice-label" for="chp_4">
-                        <span class="choice-left"><span class="c-text" data-i18n="chp4">₹3,500–₹6,000</span></span>
-                        <span class="c-indicator"></span>
-                      </label>
-                    </div>
-                    <div class="choice-item">
-                      <input type="radio" name="current_helmet_price" id="chp_5" value="₹6,000+">
-                      <label class="choice-label" for="chp_5">
-                        <span class="choice-left"><span class="c-text" data-i18n="chp5">₹6,000+</span></span>
-                        <span class="c-indicator"></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="error-text-hint" id="err-hint-p3-q3" data-i18n="err_p3_q3">Please select your current helmet price bracket.</div>
-              </div>
-
-              <!-- Question 4: Open-ended feedback -->
-              <div class="question-card" id="card-p3-q4">
-                <div class="q-title-row">
-                  <span class="q-title" data-i18n="q3_4Title">4. What would make you want this product? <span style="font-size:12px;font-weight:400;color:var(--c-dark-sand);">(optional)</span></span>
-                </div>
-                <p class="q-helper" data-i18n="q3_4Helper">Share any specific feature or wow-factor you'd love to see.</p>
-                <textarea id="product_wishlist_val" placeholder="One thing you'd love to see in SmartShield or ModSmart..." data-i18n-ph="product_wishlist_ph"></textarea>
-              </div>
-
-              <!-- EARLY ACCESS SECTION -->
-              <div class="early-access-card">
-                <span class="ea-badge-pill" data-i18n="ea_badge">VIP Launch List</span>
-                <h3 class="ea-header" data-i18n="ea_title">WANT EARLY ACCESS?</h3>
-                <p class="ea-desc" data-i18n="ea_desc">Be among the first riders to test SmartShield / ModSmart and receive priority launch updates.</p>
-
-                <div class="ea-fields-row">
-                  <div>
-                    <label style="display:block;font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;" data-i18n="ea_name_lbl">Name</label>
-                    <input type="text" id="ea_name_val" placeholder="Rider name" data-i18n-ph="ea_name_ph" autocomplete="name">
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;" data-i18n="ea_phone_lbl">Phone</label>
-                    <input type="tel" id="ea_phone_val" placeholder="+91 XXXXX XXXXX" data-i18n-ph="ea_phone_ph" autocomplete="tel">
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;" data-i18n="ea_email_lbl">Email</label>
-                    <input type="email" id="ea_email_val" placeholder="rider@email.com" data-i18n-ph="ea_email_ph" autocomplete="email">
-                  </div>
-                </div>
-
-                <label class="ea-opt-wrap" for="ea_optin_box">
-                  <input type="checkbox" id="ea_optin_box" checked>
-                  <span class="ea-opt-text" data-i18n="ea_optin">
-                    Join the SmartShield × ModSmart early-access list
-                  </span>
-                </label>
-
-                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
-                  <button type="button" class="btn-submit-action" id="main-submit-btn" onclick="executeSubmission(false)">
-                    <span class="btn-label-text" id="submit-text-elem" data-i18n="submit_ea">SUBMIT &amp; JOIN EARLY ACCESS ↗</span>
-                    <div class="btn-spinner"></div>
-                  </button>
-                  <a class="skip-ea-btn" onclick="executeSubmission(true)" data-i18n="skip_ea">
-                    Submit without joining
-                  </a>
-                </div>
-              </div>
-
-            </div>
-
-          </form>
+        <form id="pmf-survey-form" novalidate onsubmit="event.preventDefault();">
 
           <!-- ══════════════════════════════════════════════════
-               SUCCESS STATE VIEW
+               STEP 1: YOU (7 Questions)
                ══════════════════════════════════════════════════ -->
-          <div class="success-pane" id="pane-success">
-            <div class="success-icon-ring">↗</div>
-            <h2 class="success-title font-display">YOU'RE IN! ↗</h2>
-            <p class="success-lead">
-              Thank you for helping us build the next generation of smart riding technology in India.
-            </p>
-            <p class="success-sub">
-              Your feedback will directly influence our product features, pricing, and rider experience.
-            </p>
-
-            <div class="success-chips-row">
-              <div class="succ-chip">SMARTSHIELD × MODSMART</div>
-              <div class="succ-chip">ANGIRAS INDUSTRIES</div>
-              <div class="succ-chip">Patent No. 202521123556</div>
-              <div class="succ-chip"> I-Hub GEC Raipur Incubated</div>
+          <div class="survey-pane is-active" id="pane-step-1" role="region" aria-labelledby="pane-1-heading">
+            <div class="pane-header">
+              <div class="pane-tag" data-i18n="p1Tag">01 — YOU · STEP 1 OF 3</div>
+              <h2 class="pane-title" id="pane-1-heading" data-i18n="p1Title">TELL US ABOUT <span class="hl-blue">YOUR RIDE</span></h2>
+              <p class="pane-subtitle" data-i18n="p1Subtitle">Help us understand how you ride and what challenges you face.</p>
             </div>
 
-            <a class="btn-visit-site" href="https://angiras0.github.io/Angiras" target="_blank" rel="noopener">
-              Explore the full Angiras website
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke-linecap="round"/></svg>
-            </a>
+            <!-- Q1: Occupation (Single) -->
+            <fieldset class="question-card" id="card-q1">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q1Title">1. What do you do? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q1-helper" data-i18n="q1Helper">Select your primary occupation</p>
+
+              <div class="choices-grid cols-2" role="radiogroup" aria-describedby="q1-helper err-hint-q1">
+                <div class="choice-item">
+                  <input type="radio" name="occupation" id="occ_1" value="Student" required>
+                  <label class="choice-label" for="occ_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="occ_student">Student</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="occupation" id="occ_2" value="Job / Employee">
+                  <label class="choice-label" for="occ_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="occ_job">Job / Employee</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="occupation" id="occ_3" value="Business">
+                  <label class="choice-label" for="occ_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="occ_business">Business</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="occupation" id="occ_4" value="Delivery / Gig Worker">
+                  <label class="choice-label" for="occ_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="occ_gig">Delivery / Gig Worker</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="occupation" id="occ_5" value="Freelancer">
+                  <label class="choice-label" for="occ_5">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="occ_freelance">Freelancer</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="occupation" id="occ_6" value="Other">
+                  <label class="choice-label" for="occ_6">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="occ_other">Other</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="other-input-reveal" id="occ-other-box">
+                <input type="text" id="occ_other_val" placeholder="Specify your occupation..." data-i18n-ph="occ_ph" autocomplete="off" aria-label="Other occupation description">
+              </div>
+              <div class="error-text-hint" id="err-hint-q1" role="alert" data-i18n="err_q1">Please select your occupation.</div>
+            </fieldset>
+
+            <!-- Q2: Ride Frequency (Single) -->
+            <fieldset class="question-card" id="card-q2">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q2Title">2. How often do you ride? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q2-helper" data-i18n="q2Helper">Your average weekly riding routine</p>
+
+              <div class="choices-grid cols-2" role="radiogroup" aria-describedby="q2-helper err-hint-q2">
+                <div class="choice-item">
+                  <input type="radio" name="ride_frequency" id="rf_1" value="Daily" required>
+                  <label class="choice-label" for="rf_1">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="rf_daily">Daily</span>
+                      <span class="choice-sub-text" data-i18n="rf_daily_sub">5+ days every week</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="ride_frequency" id="rf_2" value="3–5 days/week">
+                  <label class="choice-label" for="rf_2">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="rf_3to5">3–5 days/week</span>
+                      <span class="choice-sub-text" data-i18n="rf_3to5_sub">Regular weekday commute</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="ride_frequency" id="rf_3" value="1–2 days/week">
+                  <label class="choice-label" for="rf_3">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="rf_1to2">1–2 days/week</span>
+                      <span class="choice-sub-text" data-i18n="rf_1to2_sub">Occasional trips or errands</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="ride_frequency" id="rf_4" value="Occasionally">
+                  <label class="choice-label" for="rf_4">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="rf_occ">Occasionally</span>
+                      <span class="choice-sub-text" data-i18n="rf_occ_sub">Once or twice a month</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-q2" role="alert" data-i18n="err_q2">Please select your riding frequency.</div>
+            </fieldset>
+
+            <!-- Q3: Ride Purpose (Multi up to 3) -->
+            <fieldset class="question-card" id="card-q3">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q3Title">3. What do you mainly ride for? <span class="req-star" aria-hidden="true">*</span></span>
+                <span class="selection-counter" id="rp-badge-counter" aria-live="polite">0 / 3 selected</span>
+              </legend>
+              <p class="q-helper" id="q3-helper" data-i18n="q3Helper">Choose up to 3.</p>
+
+              <div class="choices-grid cols-2" id="rp-choices-container" aria-describedby="q3-helper err-hint-q3">
+                <div class="choice-item">
+                  <input type="checkbox" name="ride_purpose" id="rp_1" value="Office">
+                  <label class="choice-label" for="rp_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="rp_office">Office</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="ride_purpose" id="rp_2" value="College">
+                  <label class="choice-label" for="rp_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="rp_college">College</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="ride_purpose" id="rp_3" value="Work / Business">
+                  <label class="choice-label" for="rp_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="rp_business">Work / Business</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="ride_purpose" id="rp_4" value="Delivery">
+                  <label class="choice-label" for="rp_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="rp_delivery">Delivery</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="ride_purpose" id="rp_5" value="Touring / Long Ride">
+                  <label class="choice-label" for="rp_5">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="rp_touring">Touring / Long Ride</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="ride_purpose" id="rp_6" value="Personal">
+                  <label class="choice-label" for="rp_6">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="rp_personal">Personal</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-q3" role="alert" data-i18n="err_q3">Please select 1 to 3 ride purposes.</div>
+            </fieldset>
+
+            <!-- Q4: Smart Devices (Multi) -->
+            <fieldset class="question-card" id="card-q4">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q4Title">4. Do you currently use any smart / connected device? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q4-helper" data-i18n="q4Helper">Select all that apply.</p>
+
+              <div class="choices-grid cols-2" id="sd-choices-container" aria-describedby="q4-helper err-hint-q4">
+                <div class="choice-item">
+                  <input type="checkbox" name="smart_devices" id="sd_1" value="Smartwatch">
+                  <label class="choice-label" for="sd_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="sd_watch">Smartwatch</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="smart_devices" id="sd_2" value="Smart Band / Fitness Band">
+                  <label class="choice-label" for="sd_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="sd_band">Smart Band / Fitness Band</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="smart_devices" id="sd_3" value="Smart Earbuds / Bluetooth Device">
+                  <label class="choice-label" for="sd_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="sd_earbuds">Smart Earbuds / Bluetooth Device</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="smart_devices" id="sd_4" value="Smart Home / IoT Device">
+                  <label class="choice-label" for="sd_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="sd_smarthome">Smart Home / IoT Device</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="smart_devices" id="sd_5" value="Other">
+                  <label class="choice-label" for="sd_5">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="sd_other">Other</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="smart_devices" id="sd_6" value="None">
+                  <label class="choice-label" for="sd_6">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="sd_none">None</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="other-input-reveal" id="sd-other-box">
+                <input type="text" id="sd_other_val" placeholder="Specify device..." data-i18n-ph="sd_other_ph" autocomplete="off" aria-label="Other smart device description">
+              </div>
+              <div class="error-text-hint" id="err-hint-q4" role="alert" data-i18n="err_q4">Please select at least one option.</div>
+            </fieldset>
+
+            <!-- Q5: Riding Problems (Multi) -->
+            <fieldset class="question-card" id="card-q5">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q5Title">5. What problems do you face while riding? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q5-helper" data-i18n="q5Helper">Select all that apply.</p>
+
+              <div class="choices-grid cols-2" id="pr-choices-container" aria-describedby="q5-helper err-hint-q5">
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_1" value="Phone Calls">
+                  <label class="choice-label" for="pr_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_calls">Phone Calls</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_2" value="Navigation">
+                  <label class="choice-label" for="pr_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_nav">Navigation</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_3" value="Potholes / Bad Roads">
+                  <label class="choice-label" for="pr_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_roads">Potholes / Bad Roads</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_4" value="Heavy Traffic">
+                  <label class="choice-label" for="pr_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_traffic">Heavy Traffic</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_5" value="Rain / Poor Visibility">
+                  <label class="choice-label" for="pr_5">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_rain">Rain / Poor Visibility</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_6" value="Heat Inside Helmet">
+                  <label class="choice-label" for="pr_6">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_heat">Heat Inside Helmet</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_7" value="Fatigue / Long Rides">
+                  <label class="choice-label" for="pr_7">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_fatigue">Fatigue / Long Rides</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_8" value="Emergency / Accident Situations">
+                  <label class="choice-label" for="pr_8">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_sos">Emergency / Accident Situations</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_9" value="Group Communication">
+                  <label class="choice-label" for="pr_9">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_group">Group Communication</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_10" value="Difficulty Hearing Audio">
+                  <label class="choice-label" for="pr_10">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_audio">Difficulty Hearing Audio</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="riding_problems" id="pr_11" value="Other">
+                  <label class="choice-label" for="pr_11">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="pr_other">Other</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="other-input-reveal" id="pr-other-box">
+                <input type="text" id="pr_other_val" placeholder="Describe other problem..." data-i18n-ph="pr_ph" autocomplete="off" aria-label="Other riding problem description">
+              </div>
+              <div class="error-text-hint" id="err-hint-q5" role="alert" data-i18n="err_q5">Please select at least one riding problem.</div>
+            </fieldset>
+
+            <!-- Q6: #1 Biggest Problem (Single) -->
+            <fieldset class="question-card" id="card-q6">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q6Title">6. What's your #1 biggest riding problem? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q6-helper" data-i18n="q6Helper">Only one selection — your single greatest frustration</p>
+
+              <div class="choices-grid cols-3" role="radiogroup" aria-describedby="q6-helper err-hint-q6">
+                <div class="choice-item">
+                  <input type="radio" name="biggest_problem" id="bp_1" value="Safety" required>
+                  <label class="choice-label" for="bp_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bp_safety">Safety</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="biggest_problem" id="bp_2" value="Navigation">
+                  <label class="choice-label" for="bp_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bp_nav">Navigation</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="biggest_problem" id="bp_3" value="Communication">
+                  <label class="choice-label" for="bp_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bp_comm">Communication</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="biggest_problem" id="bp_4" value="Traffic / Roads">
+                  <label class="choice-label" for="bp_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bp_traffic">Traffic / Roads</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="biggest_problem" id="bp_5" value="Heat / Comfort">
+                  <label class="choice-label" for="bp_5">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bp_heat">Heat / Comfort</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="biggest_problem" id="bp_6" value="Emergency Situations">
+                  <label class="choice-label" for="bp_6">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bp_emergency">Emergency Situations</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-q6" role="alert" data-i18n="err_q6">Please select your #1 biggest problem.</div>
+            </fieldset>
+
+            <!-- Q7: Dangerous Riding Situation (Single + conditional details) -->
+            <fieldset class="question-card" id="card-q7">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q7Title">7. Have you ever experienced a difficult or dangerous riding situation? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q7-helper" data-i18n="q7Helper">Critical context for our safety engineering</p>
+
+              <div class="choices-grid cols-2" role="radiogroup" aria-describedby="q7-helper err-hint-q7">
+                <div class="choice-item">
+                  <input type="radio" name="dangerous_experience" id="de_1" value="Serious Accident" required>
+                  <label class="choice-label" for="de_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="de_serious">Serious Accident</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="dangerous_experience" id="de_2" value="Near Miss">
+                  <label class="choice-label" for="de_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="de_nearmiss">Near Miss</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="dangerous_experience" id="de_3" value="Dangerous Situation — No Accident">
+                  <label class="choice-label" for="de_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="de_danger">Dangerous Situation — No Accident</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="dangerous_experience" id="de_4" value="No">
+                  <label class="choice-label" for="de_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="de_no">No</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="de-details-reveal" id="de-details-box">
+                <label for="de_details_val" class="ea-label" data-i18n="de_lbl">If you're comfortable, briefly tell us what happened: <span class="optional-tag">(optional)</span></label>
+                <textarea id="de_details_val" placeholder="e.g., Night turn skidding, sudden braking by front vehicle..." data-i18n-ph="de_ph" autocomplete="off" aria-label="Details about dangerous riding situation"></textarea>
+              </div>
+              <div class="error-text-hint" id="err-hint-q7" role="alert" data-i18n="err_q7">Please select an option for question 7.</div>
+            </fieldset>
           </div>
 
-        </div>
+          <!-- ══════════════════════════════════════════════════
+               STEP 2: PRODUCT (4 Questions)
+               ══════════════════════════════════════════════════ -->
+          <div class="survey-pane" id="pane-step-2" role="region" aria-labelledby="pane-2-heading">
+            <div class="pane-header">
+              <div class="pane-tag" data-i18n="p2Tag">02 — PRODUCT · STEP 2 OF 3</div>
+              <h2 class="pane-title" id="pane-2-heading" data-i18n="p2Title">WHAT WOULD YOU <span class="hl-blue">ACTUALLY BUY?</span></h2>
+              <p class="pane-subtitle" data-i18n="p2Subtitle">Tell us which smart riding setup fits your ride and budget.</p>
+            </div>
 
-        <!-- Sticky Footer Action Area Inside Window -->
-        <div class="mac-window-footer" id="mac-window-footer">
-          <button type="button" class="btn-win-back is-hidden" id="win-back-btn" onclick="goToStep(activeStep, activeStep - 1)">
-            <span data-i18n="btn_back">← BACK</span>
-          </button>
+            <!-- Q1 (P2 Q1): Desired Features (Multi up to 5) -->
+            <fieldset class="question-card" id="card-p2-q1">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q2_1Title">1. Which features would be most useful to you? <span class="req-star" aria-hidden="true">*</span></span>
+                <span class="selection-counter" id="feat-badge-counter" aria-live="polite">0 / 5 selected</span>
+              </legend>
+              <p class="q-helper" id="q2_1-helper" data-i18n="q2_1Helper">Choose up to 5.</p>
 
-          <div class="win-footer-status" id="win-footer-status">
-            <span>●</span>
-            <span id="win-footer-label">Step 1 of 3: Rider Profile</span>
+              <div class="choices-grid cols-2" id="feat-choices-container" aria-describedby="q2_1-helper err-hint-p2-q1">
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_1" value="AI Safety / Crash Detection">
+                  <label class="choice-label" for="ft_1">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft1">AI Safety / Crash Detection</span>
+                      <span class="choice-sub-text" data-i18n="ft1_sub">Collision sensing &amp; alert</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_2" value="Emergency SOS">
+                  <label class="choice-label" for="ft_2">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft2">Emergency SOS</span>
+                      <span class="choice-sub-text" data-i18n="ft2_sub">One-touch emergency beacon</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_3" value="Navigation Audio">
+                  <label class="choice-label" for="ft_3">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft3">Navigation Audio</span>
+                      <span class="choice-sub-text" data-i18n="ft3_sub">In-helmet spoken turn directions</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_4" value="Hands-Free Calls">
+                  <label class="choice-label" for="ft_4">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft4">Hands-Free Calls</span>
+                      <span class="choice-sub-text" data-i18n="ft4_sub">Wind noise cancelling voice clarity</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_5" value="Music / Podcasts">
+                  <label class="choice-label" for="ft_5">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft5">Music / Podcasts</span>
+                      <span class="choice-sub-text" data-i18n="ft5_sub">Integrated stereo audio drivers</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_6" value="Bluetooth Group Intercom">
+                  <label class="choice-label" for="ft_6">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft6">Bluetooth Group Intercom</span>
+                      <span class="choice-sub-text" data-i18n="ft6_sub">Rider-to-rider direct comms</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_7" value="Voice Assistant">
+                  <label class="choice-label" for="ft_7">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft7">Voice Assistant</span>
+                      <span class="choice-sub-text" data-i18n="ft7_sub">Google Assistant &amp; Siri support</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="desired_features" id="ft_8" value="AI Speed / Safety Alerts">
+                  <label class="choice-label" for="ft_8">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="ft8">AI Speed / Safety Alerts</span>
+                      <span class="choice-sub-text" data-i18n="ft8_sub">Fatigue and speed hazard cues</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-p2-q1" role="alert" data-i18n="err_p2_q1">Please select 1 to 5 features.</div>
+            </fieldset>
+
+            <!-- Q2 (P2 Q2): Product Preference (Single) -->
+            <fieldset class="question-card" id="card-p2-q2">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q2_2Title">2. Which product would you prefer? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q2_2-helper" data-i18n="q2_2Helper">Select the smart riding experience that fits your setup</p>
+
+              <div class="product-cards-grid" role="radiogroup" aria-describedby="q2_2-helper err-hint-p2-q2">
+                <!-- SMARTSHIELD Full Helmet -->
+                <div class="product-card-item">
+                  <input type="radio" name="product_preference" id="pref_sh" value="SmartShield" required>
+                  <label class="product-card-label" for="pref_sh">
+                    <div class="product-card-top">
+                      <div class="p-card-media" onclick="event.preventDefault(); event.stopPropagation(); selectAndOpenLightbox('pref_sh', 'assets/garuda-smart-helmet.webp', 'SMARTSHIELD — Full AI Smart Helmet');">
+                        <img src="assets/garuda-smart-helmet.webp" alt="SMARTSHIELD Full AI Smart Helmet" width="400" height="260" loading="lazy" decoding="async">
+                        <span class="p-card-badge" data-i18n="p_sh_badge">Full Helmet</span>
+                        <span class="p-card-zoom-btn" data-i18n="viewImage">View Image</span>
+                      </div>
+                      <span class="c-indicator p-card-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="p-card-content">
+                      <div class="p-card-title" data-i18n="p_sh_title">SMARTSHIELD</div>
+                      <div class="p-card-sub" data-i18n="p_sh_sub">Full AI Smart Helmet</div>
+                      <div class="p-card-price-range" data-i18n="target_sh_price">₹2,000–₹6,000</div>
+                      <ul class="p-card-features">
+                        <li data-i18n="sh_feat1">Smart safety &amp; crash detection</li>
+                        <li data-i18n="sh_feat2">Bluetooth &amp; Navigation audio</li>
+                        <li data-i18n="sh_feat3">SOS &amp; Hands-free calls</li>
+                        <li data-i18n="sh_feat4">AI features &amp; Complete new helmet</li>
+                      </ul>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- MODSMART Upgrade Kit -->
+                <div class="product-card-item">
+                  <input type="radio" name="product_preference" id="pref_ms" value="ModSmart">
+                  <label class="product-card-label" for="pref_ms">
+                    <div class="product-card-top">
+                      <div class="p-card-media" onclick="event.preventDefault(); event.stopPropagation(); selectAndOpenLightbox('pref_ms', 'assets/garuda-upgrade-kit.webp', 'MODSMART — Upgrade Your Existing Helmet');">
+                        <img src="assets/garuda-upgrade-kit.webp" alt="MODSMART Upgrade Kit" width="400" height="260" loading="lazy" decoding="async">
+                        <span class="p-card-badge" data-i18n="p_ms_badge">Upgrade Kit</span>
+                        <span class="p-card-zoom-btn" data-i18n="viewImage">View Image</span>
+                      </div>
+                      <span class="c-indicator p-card-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="p-card-content">
+                      <div class="p-card-title" data-i18n="p_ms_title">MODSMART</div>
+                      <div class="p-card-sub" data-i18n="p_ms_sub">Upgrade Your Existing Helmet</div>
+                      <div class="p-card-price-range" data-i18n="target_ms_price">₹1,500–₹3,500</div>
+                      <ul class="p-card-features">
+                        <li data-i18n="ms_feat1">Works with existing helmet</li>
+                        <li data-i18n="ms_feat2">Bluetooth &amp; Navigation audio</li>
+                        <li data-i18n="ms_feat3">Hands-free calls &amp; Smart features</li>
+                        <li data-i18n="ms_feat4">Easy snap-on installation</li>
+                      </ul>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="product-secondary-grid">
+                <div class="choice-item">
+                  <input type="radio" name="product_preference" id="pref_both" value="Both / Depends on Features">
+                  <label class="choice-label" for="pref_both">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="p_both">Both / Depends on Features</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="product_preference" id="pref_unsure" value="Not Sure">
+                  <label class="choice-label" for="pref_unsure">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="p_unsure">Not Sure</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-p2-q2" role="alert" data-i18n="err_p2_q2">Please select which product you would prefer.</div>
+            </fieldset>
+
+            <!-- Q3 (P2 Q3): Acceptable Price (Adaptive Single per group) -->
+            <fieldset class="question-card" id="card-p2-q3">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q2_3Title">3. What's an acceptable price for you? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q2_3-helper" data-i18n="q2_3Helper">Select the price tier that feels justified for you</p>
+
+              <!-- SmartShield Pricing Tier -->
+              <div class="pricing-group-card" id="sh-pricing-block">
+                <div class="pricing-group-header">
+                  <span class="pricing-group-title" data-i18n="sh_price_header">SMARTSHIELD (Full AI Smart Helmet)</span>
+                  <span class="pricing-target-tag">Target: ₹2,000–₹6,000+</span>
+                </div>
+                <div class="choices-grid cols-3 price-tier-grid" role="radiogroup">
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="smartshield_price" id="shp_2000" value="₹2,000">
+                    <label class="choice-label price-tier-label" for="shp_2000">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹2,000</span>
+                        <span class="price-tier-name" data-i18n="tier_entry">Entry</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="smartshield_price" id="shp_3000" value="₹3,000">
+                    <label class="choice-label price-tier-label" for="shp_3000">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹3,000</span>
+                        <span class="price-tier-name" data-i18n="tier_value">Value</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="smartshield_price" id="shp_4000" value="₹4,000">
+                    <label class="choice-label price-tier-label" for="shp_4000">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹4,000</span>
+                        <span class="price-tier-name" data-i18n="tier_balanced">Balanced</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="smartshield_price" id="shp_5000" value="₹5,000">
+                    <label class="choice-label price-tier-label" for="shp_5000">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹5,000</span>
+                        <span class="price-tier-name" data-i18n="tier_premium">Premium</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="smartshield_price" id="shp_6000" value="₹6,000+">
+                    <label class="choice-label price-tier-label" for="shp_6000">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹6,000+</span>
+                        <span class="price-tier-name" data-i18n="tier_flagship">Flagship</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ModSmart Pricing Tier -->
+              <div class="pricing-group-card" id="ms-pricing-block">
+                <div class="pricing-group-header">
+                  <span class="pricing-group-title" data-i18n="ms_price_header">MODSMART (Upgrade Your Existing Helmet)</span>
+                  <span class="pricing-target-tag">Target: ₹1,500–₹3,500+</span>
+                </div>
+                <div class="choices-grid cols-3 price-tier-grid" role="radiogroup">
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="modsmart_price" id="msp_1500" value="₹1,500">
+                    <label class="choice-label price-tier-label" for="msp_1500">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹1,500</span>
+                        <span class="price-tier-name" data-i18n="tier_accessible">Accessible</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="modsmart_price" id="msp_2000" value="₹2,000">
+                    <label class="choice-label price-tier-label" for="msp_2000">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹2,000</span>
+                        <span class="price-tier-name" data-i18n="tier_sweetspot">Sweet Spot</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="modsmart_price" id="msp_2500" value="₹2,500">
+                    <label class="choice-label price-tier-label" for="msp_2500">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹2,500</span>
+                        <span class="price-tier-name" data-i18n="tier_standard">Standard</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="modsmart_price" id="msp_3000" value="₹3,000">
+                    <label class="choice-label price-tier-label" for="msp_3000">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹3,000</span>
+                        <span class="price-tier-name" data-i18n="tier_upper">Upper</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item price-tier-card">
+                    <input type="radio" name="modsmart_price" id="msp_3500" value="₹3,500+">
+                    <label class="choice-label price-tier-label" for="msp_3500">
+                      <span class="price-tier-content">
+                        <span class="price-tier-val">₹3,500+</span>
+                        <span class="price-tier-name" data-i18n="tier_fullkit">Full Kit</span>
+                      </span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-p2-q3" role="alert" data-i18n="err_p2_q3">Please select an acceptable price point.</div>
+            </fieldset>
+
+            <!-- Q4 (P2 Q4): Purchase Barriers (Multi up to 4) -->
+            <fieldset class="question-card" id="card-p2-q4">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q2_4Title">4. What could stop you from buying? <span class="req-star" aria-hidden="true">*</span></span>
+                <span class="selection-counter" id="barrier-badge-counter" aria-live="polite">0 / 4 selected</span>
+              </legend>
+              <p class="q-helper" id="q2_4-helper" data-i18n="q2_4Helper">Choose up to 4.</p>
+
+              <div class="choices-grid cols-2" id="barrier-choices-container" aria-describedby="q2_4-helper err-hint-p2-q4">
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_1" value="Price">
+                  <label class="choice-label" for="bar_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_price">Price</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_2" value="Battery / Charging">
+                  <label class="choice-label" for="bar_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_battery">Battery / Charging</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_3" value="Extra Weight">
+                  <label class="choice-label" for="bar_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_weight">Extra Weight</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_4" value="Installation">
+                  <label class="choice-label" for="bar_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_install">Installation</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_5" value="Safety / Certification">
+                  <label class="choice-label" for="bar_5">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_safety">Safety / Certification</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_6" value="Helmet Compatibility">
+                  <label class="choice-label" for="bar_6">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_compat">Helmet Compatibility</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_7" value="Waterproofing">
+                  <label class="choice-label" for="bar_7">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_water">Waterproofing</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_8" value="Design / Looks">
+                  <label class="choice-label" for="bar_8">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_looks">Design / Looks</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_9" value="Brand Trust">
+                  <label class="choice-label" for="bar_9">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_trust">Brand Trust</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="purchase_barriers" id="bar_10" value="Other">
+                  <label class="choice-label" for="bar_10">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="bar_other">Other</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="other-input-reveal" id="bar-other-box">
+                <input type="text" id="bar_other_val" placeholder="Specify barrier..." data-i18n-ph="bar_ph" autocomplete="off" aria-label="Other purchase barrier description">
+              </div>
+              <div class="error-text-hint" id="err-hint-p2-q4" role="alert" data-i18n="err_p2_q4">Please choose 1 to 4 purchase barriers.</div>
+            </fieldset>
           </div>
 
-          <button type="button" class="btn-win-continue" id="win-continue-btn" onclick="goToStep(activeStep, activeStep + 1)">
-            <span id="win-continue-label" data-i18n="btn_continue">CONTINUE</span>
-            <span class="arrow">→</span>
-          </button>
+          <!-- ══════════════════════════════════════════════════
+               STEP 3: TRUST & ACCESS (4 Questions + Early Access)
+               ══════════════════════════════════════════════════ -->
+          <div class="survey-pane" id="pane-step-3" role="region" aria-labelledby="pane-3-heading">
+            <div class="pane-header">
+              <div class="pane-tag" data-i18n="p3Tag">03 — TRUST &amp; ACCESS · STEP 3 OF 3</div>
+              <h2 class="pane-title" id="pane-3-heading" data-i18n="p3Title">WOULD YOU TRUST &amp; <span class="hl-blue">TRY IT?</span></h2>
+              <p class="pane-subtitle" data-i18n="p3Subtitle">Tell us what would give you confidence to choose SmartShield or ModSmart.</p>
+            </div>
+
+            <!-- Q1 (P3 Q1): Trust Factors (Multi up to 5) -->
+            <fieldset class="question-card" id="card-p3-q1">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q3_1Title">1. What would make you trust the product? <span class="req-star" aria-hidden="true">*</span></span>
+                <span class="selection-counter" id="trust-badge-counter" aria-live="polite">0 / 5 selected</span>
+              </legend>
+              <p class="q-helper" id="q3_1-helper" data-i18n="q3_1Helper">Choose up to 5.</p>
+
+              <div class="choices-grid cols-3" id="trust-choices-container" aria-describedby="q3_1-helper err-hint-p3-q1">
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_1" value="ISI / BIS Certification">
+                  <label class="choice-label" for="tf_1">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_isi">ISI / BIS Certification</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_2" value="Crash Testing">
+                  <label class="choice-label" for="tf_2">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_crash">Crash Testing</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_3" value="Strong Warranty">
+                  <label class="choice-label" for="tf_3">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_warranty">Strong Warranty</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_4" value="Waterproofing">
+                  <label class="choice-label" for="tf_4">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_water">Waterproofing</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_5" value="Battery Safety">
+                  <label class="choice-label" for="tf_5">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_battery">Battery Safety</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_6" value="Real Rider Reviews">
+                  <label class="choice-label" for="tf_6">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_reviews">Real Rider Reviews</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_7" value="Brand Reputation">
+                  <label class="choice-label" for="tf_7">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_reputation">Brand Reputation</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_8" value="Product Demo / Test Ride">
+                  <label class="choice-label" for="tf_8">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_demo">Product Demo / Test Ride</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="checkbox" name="trust_factors" id="tf_9" value="Made in India">
+                  <label class="choice-label" for="tf_9">
+                    <span class="choice-content"><span class="choice-main-text" data-i18n="tf_india">Made in India</span></span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-p3-q1" role="alert" data-i18n="err_p3_q1">Please select 1 to 5 trust factors.</div>
+            </fieldset>
+
+            <!-- Q2 (P3 Q2): Purchase Intent (Single) -->
+            <fieldset class="question-card" id="card-p3-q2">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q3_2Title">2. When would you buy it? <span class="req-star" aria-hidden="true">*</span></span>
+              </legend>
+              <p class="q-helper" id="q3_2-helper" data-i18n="q3_2Helper">Your genuine purchase timeline</p>
+
+              <div class="choices-grid cols-2" role="radiogroup" aria-describedby="q3_2-helper err-hint-p3-q2">
+                <div class="choice-item">
+                  <input type="radio" name="purchase_intent" id="pi_1" value="I would buy immediately" required>
+                  <label class="choice-label" for="pi_1">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="pi_immediate">I would buy immediately</span>
+                      <span class="choice-sub-text" data-i18n="pi_immediate_sub">Ready to pre-order or purchase right at launch.</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="purchase_intent" id="pi_2" value="I would seriously consider it">
+                  <label class="choice-label" for="pi_2">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="pi_consider">I would seriously consider it</span>
+                      <span class="choice-sub-text" data-i18n="pi_consider_sub">Strong intent once reviews and demo rides appear.</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="purchase_intent" id="pi_3" value="Need more information">
+                  <label class="choice-label" for="pi_3">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="pi_info">Need more information</span>
+                      <span class="choice-sub-text" data-i18n="pi_info_sub">Want to see official crash test data and warranty.</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="choice-item">
+                  <input type="radio" name="purchase_intent" id="pi_4" value="Not interested right now">
+                  <label class="choice-label" for="pi_4">
+                    <span class="choice-content">
+                      <span class="choice-main-text" data-i18n="pi_notyet">Not interested right now</span>
+                      <span class="choice-sub-text" data-i18n="pi_notyet_sub">Satisfied with my current helmet setup.</span>
+                    </span>
+                    <span class="c-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-p3-q2" role="alert" data-i18n="err_p3_q2">Please select your purchase timeline.</div>
+            </fieldset>
+
+            <!-- Q3 (P3 Q3): Current Helmet Benchmark (Text brand optional + Required Price single) -->
+            <fieldset class="question-card" id="card-p3-q3">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q3_3Title">3. Tell us about your current helmet</span>
+              </legend>
+              <p class="q-helper" id="q3_3-helper" data-i18n="q3_3Helper">Helps our engineering and pricing benchmarking</p>
+
+              <div class="ea-feedback-row">
+                <label for="cur_helmet_brand_val" class="ea-label" data-i18n="cur_brand_lbl">
+                  Current helmet brand <span class="optional-tag">(optional)</span>
+                </label>
+                <input type="text" id="cur_helmet_brand_val" placeholder="e.g. Steelbird, Vega, Studds, Axor, MT, SMK..." data-i18n-ph="cur_brand_ph" autocomplete="off" aria-label="Current helmet brand">
+              </div>
+
+              <div>
+                <label class="ea-label" data-i18n="cur_price_lbl">
+                  Approximate current helmet price <span class="req-star">*</span>
+                </label>
+                <div class="choices-grid cols-3" role="radiogroup" aria-describedby="err-hint-p3-q3">
+                  <div class="choice-item">
+                    <input type="radio" name="current_helmet_price" id="chp_1" value="Under ₹1,000" required>
+                    <label class="choice-label" for="chp_1">
+                      <span class="choice-content"><span class="choice-main-text" data-i18n="chp1">Under ₹1,000</span></span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item">
+                    <input type="radio" name="current_helmet_price" id="chp_2" value="₹1,000–₹2,000">
+                    <label class="choice-label" for="chp_2">
+                      <span class="choice-content"><span class="choice-main-text" data-i18n="chp2">₹1,000–₹2,000</span></span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item">
+                    <input type="radio" name="current_helmet_price" id="chp_3" value="₹2,000–₹3,500">
+                    <label class="choice-label" for="chp_3">
+                      <span class="choice-content"><span class="choice-main-text" data-i18n="chp3">₹2,000–₹3,500</span></span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item">
+                    <input type="radio" name="current_helmet_price" id="chp_4" value="₹3,500–₹6,000">
+                    <label class="choice-label" for="chp_4">
+                      <span class="choice-content"><span class="choice-main-text" data-i18n="chp4">₹3,500–₹6,000</span></span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                  <div class="choice-item">
+                    <input type="radio" name="current_helmet_price" id="chp_5" value="₹6,000+">
+                    <label class="choice-label" for="chp_5">
+                      <span class="choice-content"><span class="choice-main-text" data-i18n="chp5">₹6,000+</span></span>
+                      <span class="c-indicator" aria-hidden="true"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="error-text-hint" id="err-hint-p3-q3" role="alert" data-i18n="err_p3_q3">Please select your current helmet price bracket.</div>
+            </fieldset>
+
+            <!-- Q4 (P3 Q4): Open-ended Feedback (Optional) -->
+            <fieldset class="question-card" id="card-p3-q4">
+              <legend class="q-title-row">
+                <span class="q-title" data-i18n="q3_4Title">4. What would make you want this product? <span class="optional-tag">(optional)</span></span>
+              </legend>
+              <p class="q-helper" id="q3_4-helper" data-i18n="q3_4Helper">Share any specific feature or wow-factor you'd love to see.</p>
+              <textarea id="product_wishlist_val" placeholder="One thing you'd love to see in SmartShield or ModSmart..." data-i18n-ph="product_wishlist_ph" aria-label="Product feedback"></textarea>
+            </fieldset>
+
+            <!-- EARLY ACCESS SECTION -->
+            <div class="early-access-card" id="card-early-access">
+              <span class="ea-badge-pill" data-i18n="ea_badge">VIP Launch List</span>
+              <h3 class="ea-header" data-i18n="ea_title">WANT EARLY ACCESS?</h3>
+              <p class="ea-desc" data-i18n="ea_desc">Be among the first riders to test SmartShield / ModSmart and receive priority launch updates.</p>
+
+              <div class="ea-fields-grid">
+                <div class="ea-field">
+                  <label for="ea_name_val" class="ea-label" data-i18n="ea_name_lbl">Name</label>
+                  <input type="text" id="ea_name_val" placeholder="Rider name" data-i18n-ph="ea_name_ph" autocomplete="name">
+                </div>
+                <div class="ea-field">
+                  <label for="ea_phone_val" class="ea-label" data-i18n="ea_phone_lbl">Phone</label>
+                  <input type="tel" id="ea_phone_val" placeholder="+91 XXXXX XXXXX" data-i18n-ph="ea_phone_ph" autocomplete="tel">
+                </div>
+                <div class="ea-field">
+                  <label for="ea_email_val" class="ea-label" data-i18n="ea_email_lbl">Email</label>
+                  <input type="email" id="ea_email_val" placeholder="rider@email.com" data-i18n-ph="ea_email_ph" autocomplete="email">
+                </div>
+              </div>
+
+              <div class="choice-item ea-optin-item">
+                <input type="checkbox" id="ea_optin_box" checked>
+                <label class="choice-label" for="ea_optin_box">
+                  <span class="choice-content">
+                    <span class="choice-main-text" data-i18n="ea_optin">Join the SmartShield × ModSmart early-access list</span>
+                  </span>
+                  <span class="c-indicator" aria-hidden="true"></span>
+                </label>
+              </div>
+
+              <div class="ea-submit-actions">
+                <button type="button" class="btn-submit-action" id="main-submit-btn" onclick="executeSubmission(false)">
+                  <span class="btn-label-text" id="submit-text-elem" data-i18n="submit_ea">SUBMIT &amp; JOIN EARLY ACCESS ↗</span>
+                  <span class="btn-spinner" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn-skip-ea" id="btn-skip-ea" onclick="executeSubmission(true)">
+                  <span data-i18n="skip_ea">Submit without joining</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+
+        <!-- ══════════════════════════════════════════════════
+             SUCCESS STATE VIEW
+             ══════════════════════════════════════════════════ -->
+        <div class="success-pane" id="pane-success" role="region" aria-live="polite" aria-label="Survey completed">
+          <div class="success-icon-wrap" aria-hidden="true">
+            <svg class="success-check-svg" viewBox="0 0 52 52">
+              <circle class="success-circle" cx="26" cy="26" r="24" fill="none"/>
+              <path class="success-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+          </div>
+
+          <h2 class="success-title font-display" data-i18n="succ_title">YOU'RE IN!</h2>
+          <p class="success-lead" data-i18n="succ_lead">
+            Thank you for helping us build the next generation of smart riding technology in India.
+          </p>
+          <p class="success-sub" data-i18n="succ_sub">
+            Your feedback will directly influence our product features, pricing, and rider experience.
+          </p>
+
+          <div class="success-chips-row">
+            <div class="succ-chip" data-i18n="succ_chip1">SMARTSHIELD × MODSMART</div>
+            <div class="succ-chip" data-i18n="succ_chip2">ANGIRAS INDUSTRIES</div>
+            <div class="succ-chip" data-i18n="succ_chip3">Patent No. 202521123556</div>
+            <div class="succ-chip" data-i18n="succ_chip4">I-Hub GEC Raipur Incubated</div>
+          </div>
+
+          <a class="btn-visit-site" href="https://angiras0.github.io/Angiras" target="_blank" rel="noopener">
+            <span data-i18n="succ_explore">Explore Angiras Industries</span>
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke-linecap="round"/></svg>
+          </a>
         </div>
 
       </div>
-    </div>
-  </section>
+
+      <!-- Sticky Bottom Navigation Bar -->
+      <div class="sticky-bottom-nav" id="sticky-bottom-nav">
+        <div class="sticky-nav-container">
+          <button type="button" class="btn-nav-back is-hidden" id="nav-back-btn" onclick="goToStep(activeStep, activeStep - 1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span data-i18n="btn_back">Back</span>
+          </button>
+
+          <div class="nav-status-indicator" id="nav-status-indicator">
+            <span class="nav-dot" aria-hidden="true">●</span>
+            <span id="nav-status-label">Step 1 of 3: Rider Profile</span>
+          </div>
+
+          <button type="button" class="btn-nav-continue" id="nav-continue-btn" onclick="goToStep(activeStep, activeStep + 1)">
+            <span id="nav-continue-label" data-i18n="btn_continue">Continue</span>
+            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ════════════════════════════════════════════════════════════════
-       IMAGE LIGHTBOX MODAL (QUICK VIEW)
+       IMAGE LIGHTBOX MODAL
        ════════════════════════════════════════════════════════════════ -->
-  <div id="image-lightbox-modal" class="image-lightbox" onclick="closeLightbox(event)" role="dialog" aria-modal="true" aria-label="Product Image Preview">
+  <div id="image-lightbox-modal" class="image-lightbox" onclick="closeLightbox(event)" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
     <div class="lightbox-dialog" onclick="event.stopPropagation()">
       <div class="lightbox-header">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background:#ff5f56; cursor:pointer;" onclick="closeLightbox()" title="Close (Esc)"></span>
-          <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background:#ffbd2e;"></span>
-          <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background:#27c93f;"></span>
-          <span class="lightbox-title" id="lightbox-title" style="margin-left:8px;">Product Image</span>
-        </div>
-        <button type="button" class="lightbox-close-btn" onclick="closeLightbox()" title="Close (Esc)"></button>
+        <span class="lightbox-title" id="lightbox-title">GARUDA Product Preview</span>
+        <button type="button" class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Close image preview">✕</button>
       </div>
       <div class="lightbox-body">
-        <img id="lightbox-img" src="" alt="Product Preview">
+        <img id="lightbox-img" src="" alt="Product Preview" loading="lazy">
       </div>
     </div>
   </div>
 
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
+
   <!-- ════════════════════════════════════════════════════════════════
-       CLIENT LOGIC & MACOS INTERACTION CONTROLLER
+       SITE FOOTER
        ════════════════════════════════════════════════════════════════ -->
-  <script src="script.js"></script>
-
-  <!-- Global Site Footer -->
   <footer class="site-footer">
-    <!-- SVG Bounce background -->
-    <svg preserveAspectRatio="none" id="footer-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2278 683">
-      <defs>
-        <linearGradient id="grad-1" x1="0" y1="0" x2="2278" y2="683" gradientUnits="userSpaceOnUse">
-          <stop offset="0.2" stop-color="#14213A"></stop> <!-- Deep Panel -->
-          <stop offset="0.8" stop-color="#0A1220"></stop> <!-- Navy -->
-        </linearGradient>
-      </defs>
-      <path class="footer-svg" id="bouncy-path" fill="url(#grad-1)" d="M0-0.3C0-0.3,464,156,1139,156S2278-0.3,2278-0.3V683H0V-0.3z"/>
-    </svg>
-
     <div class="footer-container">
       <div class="footer-brand">
-        <h2 class="font-display">GARUDA</h2>
-        <p>Built to bring you home. The GARUDA smart helmet system integrates military-grade crash detection, SOS beacons, and advanced navigation into a seamless, hi-vis modular design. Experience the future of rider safety today.</p>
+        <div class="footer-logo-title">GARUDA</div>
+        <p class="footer-desc" data-i18n="footerDesc">Built for Indian riders. Advanced smart helmet technology integrating crash detection, emergency SOS, and connected navigation by Angiras Industries.</p>
       </div>
       <div class="footer-links">
-        <div class="link-column">
-          <span class="mono-label">PRODUCT</span>
-          <a href="#">The System</a>
-          <a href="#">Specs</a>
+        <div class="footer-col">
+          <span class="footer-heading" data-i18n="footerProducts">Products</span>
+          <a href="#hero">SMARTSHIELD</a>
+          <a href="#hero">MODSMART</a>
         </div>
-        <div class="link-column">
-          <span class="mono-label">COMPANY</span>
-          <a href="#">About Us</a>
-          <a href="#">Contact</a>
+        <div class="footer-col">
+          <span class="footer-heading" data-i18n="footerCompany">Company</span>
+          <a href="https://angiras0.github.io/Angiras" target="_blank" rel="noopener">Angiras Industries</a>
+          <a href="mailto:contact@angiras.in">Contact Us</a>
         </div>
       </div>
     </div>
@@ -1335,64 +1353,10 @@
     </div>
   </footer>
 
+  <!-- Pinned Vendor Scripts: Confetti, Three.js r134, Vanta Waves 0.5.24 -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js" defer></script>
 
-  <!-- External Libs -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://assets.codepen.io/16327/MorphSVGPlugin3.min.js"></script>
-
-  <script>
-
-    // GSAP Footer Animation
-    if (window.gsap && window.MorphSVGPlugin) {
-      gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
-      const down = 'M0-0.3C0-0.3,464,156,1139,156S2278-0.3,2278-0.3V683H0V-0.3z';
-      const center = 'M0-0.3C0-0.3,464,0,1139,0s1139-0.3,1139-0.3V683H0V-0.3z';
-
-      ScrollTrigger.create({
-        trigger: '.site-footer',
-        start: 'top bottom',
-        toggleActions: 'play pause resume reverse',
-        onEnter: self => {
-          const velocity = self.getVelocity();
-          const variation = Math.min(Math.abs(velocity / 10000), 1); // Clamp variation
-
-          gsap.fromTo('#bouncy-path', {
-            morphSVG: down
-          }, {
-            duration: 2,
-            morphSVG: center,
-            ease: `elastic.out(${1 + variation}, ${1 - variation})`,
-            overwrite: 'true'
-          });
-        }
-      });
-    }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      if (!window.VANTA || !window.VANTA.WAVES || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        return;
-      }
-      VANTA.WAVES({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 0.85,
-        scaleMobile: 0.6,
-        color: 0x14213a,
-        shininess: 85.00,
-        waveHeight: 18.00,
-        waveSpeed: 0.3,
-        zoom: 1.01
-      });
-    });
-  </script>
 </body>
 </html>
