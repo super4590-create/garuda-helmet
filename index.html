@@ -1213,37 +1213,29 @@
               <p class="ea-desc" data-i18n="ea_desc">Be among the first riders to test SmartShield / ModSmart and receive priority launch updates.</p>
 
               <div class="ea-fields-grid">
-                <div class="ea-field">
-                  <label for="ea_name_val" class="ea-label" data-i18n="ea_name_lbl">Name</label>
-                  <input type="text" id="ea_name_val" placeholder="Rider name" data-i18n-ph="ea_name_ph" autocomplete="name">
+                <div class="ea-field" id="field-ea-name">
+                  <label for="ea_name_val" class="ea-label"><span data-i18n="ea_name_lbl">Name</span> <span class="req-star" aria-hidden="true">*</span></label>
+                  <input type="text" id="ea_name_val" name="name" placeholder="Rider name" data-i18n-ph="ea_name_ph" autocomplete="name" required aria-required="true" aria-describedby="err-hint-name">
+                  <div class="error-text-hint" id="err-hint-name" role="alert" data-i18n="err_name">Enter your full name.</div>
                 </div>
-                <div class="ea-field">
-                  <label for="ea_phone_val" class="ea-label" data-i18n="ea_phone_lbl">Phone</label>
-                  <input type="tel" id="ea_phone_val" placeholder="+91 XXXXX XXXXX" data-i18n-ph="ea_phone_ph" autocomplete="tel">
+                <div class="ea-field" id="field-ea-phone">
+                  <label for="ea_phone_val" class="ea-label"><span data-i18n="ea_phone_lbl">Phone</span> <span class="req-star" aria-hidden="true">*</span></label>
+                  <input type="tel" id="ea_phone_val" name="phone" inputmode="numeric" maxlength="14" placeholder="+91 XXXXX XXXXX" data-i18n-ph="ea_phone_ph" autocomplete="tel" required aria-required="true" aria-describedby="err-hint-phone">
+                  <div class="error-text-hint" id="err-hint-phone" role="alert" data-i18n="err_phone">Enter a valid 10-digit mobile number.</div>
                 </div>
-                <div class="ea-field">
-                  <label for="ea_email_val" class="ea-label" data-i18n="ea_email_lbl">Email</label>
-                  <input type="email" id="ea_email_val" placeholder="rider@email.com" data-i18n-ph="ea_email_ph" autocomplete="email">
+                <div class="ea-field" id="field-ea-email">
+                  <label for="ea_email_val" class="ea-label"><span data-i18n="ea_email_lbl">Email</span> <span class="req-star" aria-hidden="true">*</span></label>
+                  <input type="email" id="ea_email_val" name="email" inputmode="email" placeholder="rider@email.com" data-i18n-ph="ea_email_ph" autocomplete="email" required aria-required="true" aria-describedby="err-hint-email">
+                  <div class="error-text-hint" id="err-hint-email" role="alert" data-i18n="err_email">Enter a valid email address.</div>
                 </div>
               </div>
 
-              <div class="choice-item ea-optin-item">
-                <input type="checkbox" id="ea_optin_box" checked>
-                <label class="choice-label" for="ea_optin_box">
-                  <span class="choice-content">
-                    <span class="choice-main-text" data-i18n="ea_optin">Join the SmartShield × ModSmart early-access list</span>
-                  </span>
-                  <span class="c-indicator" aria-hidden="true"></span>
-                </label>
-              </div>
+              <input type="checkbox" id="ea_optin_box" checked style="display:none;" aria-hidden="true">
 
               <div class="ea-submit-actions">
-                <button type="button" class="btn-submit-action" id="main-submit-btn" onclick="executeSubmission(false)">
+                <button type="button" class="btn-submit-action" id="main-submit-btn" onclick="executeSubmission()">
                   <span class="btn-label-text" id="submit-text-elem" data-i18n="submit_ea">SUBMIT &amp; JOIN EARLY ACCESS ↗</span>
                   <span class="btn-spinner" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn-skip-ea" id="btn-skip-ea" onclick="executeSubmission(true)">
-                  <span data-i18n="skip_ea">Submit without joining</span>
                 </button>
               </div>
             </div>

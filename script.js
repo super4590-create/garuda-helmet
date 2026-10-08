@@ -313,9 +313,10 @@ const translations = {
     ea_phone_ph: "+91 XXXXX XXXXX",
     ea_email_lbl: "Email",
     ea_email_ph: "rider@email.com",
-    ea_optin: "Join the SmartShield × ModSmart early-access list",
     submit_ea: "SUBMIT & JOIN EARLY ACCESS ↗",
-    skip_ea: "Submit without joining",
+    err_name: "Enter your full name.",
+    err_phone: "Enter a valid 10-digit mobile number.",
+    err_email: "Enter a valid email address.",
 
     succ_title: "YOU'RE IN!",
     succ_lead: "Thank you for helping us build the next generation of smart riding technology in India.",
@@ -575,9 +576,10 @@ const translations = {
     ea_phone_ph: "+91 XXXXX XXXXX",
     ea_email_lbl: "ईमेल",
     ea_email_ph: "rider@email.com",
-    ea_optin: "स्मार्टशील्ड × मॉडस्मार्ट अर्ली एक्सेस सूची में शामिल हों",
     submit_ea: "सबमिट करें और अर्ली एक्सेस में शामिल हों ↗",
-    skip_ea: "बिना शामिल हुए सबमिट करें",
+    err_name: "कृपया अपना पूरा नाम लिखें।",
+    err_phone: "कृपया सही 10 अंकों का मोबाइल नंबर लिखें।",
+    err_email: "कृपया सही ईमेल पता लिखें।",
 
     succ_title: "आप शामिल हो गए हैं!",
     succ_lead: "भारत में स्मार्ट राइडिंग तकनीक की अगली पीढ़ी बनाने में हमारी मदद करने के लिए धन्यवाद।",
@@ -814,9 +816,52 @@ function setCardError(card, hintId) {
   if (hint) hint.classList.add("visible");
 }
 
+function setFieldError(inputEl, hintId) {
+  if (!inputEl) return;
+  inputEl.classList.add("is-invalid");
+  const hint = document.getElementById(hintId);
+  if (hint) hint.classList.add("visible");
+}
+
+function clearFieldError(inputEl, hintId) {
+  if (!inputEl) return;
+  inputEl.classList.remove("is-invalid");
+  const hint = document.getElementById(hintId);
+  if (hint) hint.classList.remove("visible");
+}
+
+function validateName(val) {
+  const trimmed = (val || "").trim();
+  return trimmed.length >= 2 && /^[\p{L}\s]+$/u.test(trimmed);
+}
+
+function cleanPhone(val) {
+  let cleaned = (val || "").replace(/[\s\-\(\)]/g, "");
+  if (cleaned.startsWith("+91")) {
+    cleaned = cleaned.slice(3);
+  } else if (/^91[6-9]\d{9}$/.test(cleaned)) {
+    cleaned = cleaned.slice(2);
+  } else if (cleaned.startsWith("0")) {
+    cleaned = cleaned.slice(1);
+  }
+  return cleaned;
+}
+
+function validatePhone(val) {
+  const cleaned = cleanPhone(val);
+  return /^[6-9]\d{9}$/.test(cleaned);
+}
+
+function validateEmail(val) {
+  const trimmed = (val || "").trim().toLowerCase();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  return emailRegex.test(trimmed) && !trimmed.includes("..");
+}
+
 function validateStep(step) {
   let isValid = true;
   let firstErrCard = null;
+  let firstInvalidField = null;
 
   function markError(cardId, hintId) {
     isValid = false;
@@ -921,14 +966,52 @@ function validateStep(step) {
     if (!chpChecked) {
       markError("card-p3-q3", "err-hint-p3-q3");
     }
+
+    // Early Access / Contact Details Validation
+    const nameInput = document.getElementById("ea_name_val");
+    const phoneInput = document.getElementById("ea_phone_val");
+    const emailInput = document.getElementById("ea_email_val");
+
+    if (!nameInput || !validateName(nameInput.value)) {
+      setFieldError(nameInput, "err-hint-name");
+      isValid = false;
+      if (!firstInvalidField) firstInvalidField = nameInput;
+    } else {
+      clearFieldError(nameInput, "err-hint-name");
+    }
+
+    if (!phoneInput || !validatePhone(phoneInput.value)) {
+      setFieldError(phoneInput, "err-hint-phone");
+      isValid = false;
+      if (!firstInvalidField) firstInvalidField = phoneInput;
+    } else {
+      clearFieldError(phoneInput, "err-hint-phone");
+    }
+
+    if (!emailInput || !validateEmail(emailInput.value)) {
+      setFieldError(emailInput, "err-hint-email");
+      isValid = false;
+      if (!firstInvalidField) firstInvalidField = emailInput;
+    } else {
+      clearFieldError(emailInput, "err-hint-email");
+    }
   }
 
-  if (!isValid && firstErrCard) {
-    firstErrCard.scrollIntoView({ behavior: "smooth", block: "center" });
-    showToast(currentLang === "hi" ? "कृपया सभी आवश्यक प्रश्नों के उत्तर दें।" : "Please complete all required questions.", "error");
+  if (!isValid) {
+    if (firstErrCard) {
+      firstErrCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else if (firstInvalidField) {
+      firstInvalidField.scrollIntoView({ behavior: "smooth", block: "center" });
+      firstInvalidField.focus();
+    }
+    showToast(currentLang === "hi" ? "कृपया सभी आवश्यक फ़ील्ड सही भरें।" : "Please complete all required fields correctly.", "error");
   }
 
   return isValid;
+}
+
+function checkPageValidity(step) {
+  return validateStep(step);
 }
 
 function goToStep(fromStep, toStep) {
@@ -1007,7 +1090,7 @@ function updatePricingVisibility() {
 }
 
 // ── 12. GATHER PAYLOAD AND SUBMIT ──
-function collectSurveyPayload(skipEarlyAccess = false) {
+function collectSurveyPayload() {
   // Occupation
   const occ = document.querySelector('input[name="occupation"]:checked');
   surveyAnswers.occupation = occ ? occ.value : "";
@@ -1079,23 +1162,15 @@ function collectSurveyPayload(skipEarlyAccess = false) {
   const feed = document.getElementById("product_wishlist_val");
   surveyAnswers.product_feedback = feed ? feed.value.trim() : "";
 
-  // Early Access
-  const optinBox = document.getElementById("ea_optin_box");
+  // Early Access / Contact (Always early_access: true, validated name, phone, email)
   const nameInput = document.getElementById("ea_name_val");
   const phoneInput = document.getElementById("ea_phone_val");
   const emailInput = document.getElementById("ea_email_val");
 
-  if (skipEarlyAccess) {
-    surveyAnswers.early_access = false;
-    surveyAnswers.name = "";
-    surveyAnswers.phone = "";
-    surveyAnswers.email = "";
-  } else {
-    surveyAnswers.early_access = optinBox ? optinBox.checked : true;
-    surveyAnswers.name = nameInput ? nameInput.value.trim() : "";
-    surveyAnswers.phone = phoneInput ? phoneInput.value.trim() : "";
-    surveyAnswers.email = emailInput ? emailInput.value.trim() : "";
-  }
+  surveyAnswers.early_access = true;
+  surveyAnswers.name = nameInput ? nameInput.value.trim() : "";
+  surveyAnswers.phone = phoneInput ? "+91" + cleanPhone(phoneInput.value) : "";
+  surveyAnswers.email = emailInput ? emailInput.value.trim().toLowerCase() : "";
 
   // Build standard format payload with comma-joined arrays
   return {
@@ -1120,27 +1195,22 @@ function collectSurveyPayload(skipEarlyAccess = false) {
     name: surveyAnswers.name,
     phone: surveyAnswers.phone,
     email: surveyAnswers.email,
-    early_access: surveyAnswers.early_access ? "Yes" : "No",
+    early_access: true,
     timestamp: new Date().toISOString(),
     language: currentLang
   };
 }
 
-async function executeSubmission(skipEarlyAccess = false) {
-  if (!validateStep(3)) return;
+async function executeSubmission() {
+  if (!checkPageValidity(3)) return;
 
   const submitBtn = document.getElementById("main-submit-btn");
-  const skipBtn = document.getElementById("btn-skip-ea");
   if (submitBtn) {
     submitBtn.classList.add("is-loading");
     submitBtn.disabled = true;
   }
-  if (skipBtn) {
-    skipBtn.style.pointerEvents = "none";
-    skipBtn.style.opacity = "0.5";
-  }
 
-  const payload = collectSurveyPayload(skipEarlyAccess);
+  const payload = collectSurveyPayload();
 
   try {
     // Send to Google Apps Script via POST
@@ -1180,10 +1250,6 @@ async function executeSubmission(skipEarlyAccess = false) {
     if (submitBtn) {
       submitBtn.classList.remove("is-loading");
       submitBtn.disabled = false;
-    }
-    if (skipBtn) {
-      skipBtn.style.pointerEvents = "";
-      skipBtn.style.opacity = "1";
     }
   }
 }
@@ -1322,6 +1388,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Early Access / Contact Inputs blur & realtime validation listeners
+  const nameInput = document.getElementById("ea_name_val");
+  const phoneInput = document.getElementById("ea_phone_val");
+  const emailInput = document.getElementById("ea_email_val");
+
+  if (nameInput) {
+    nameInput.addEventListener("blur", () => {
+      if (!validateName(nameInput.value)) {
+        setFieldError(nameInput, "err-hint-name");
+      } else {
+        clearFieldError(nameInput, "err-hint-name");
+      }
+    });
+    nameInput.addEventListener("input", () => {
+      if (validateName(nameInput.value)) {
+        clearFieldError(nameInput, "err-hint-name");
+      }
+    });
+  }
+
+  if (phoneInput) {
+    phoneInput.addEventListener("blur", () => {
+      if (!validatePhone(phoneInput.value)) {
+        setFieldError(phoneInput, "err-hint-phone");
+      } else {
+        clearFieldError(phoneInput, "err-hint-phone");
+      }
+    });
+    phoneInput.addEventListener("input", () => {
+      if (validatePhone(phoneInput.value)) {
+        clearFieldError(phoneInput, "err-hint-phone");
+      }
+    });
+  }
+
+  if (emailInput) {
+    emailInput.addEventListener("blur", () => {
+      if (!validateEmail(emailInput.value)) {
+        setFieldError(emailInput, "err-hint-email");
+      } else {
+        clearFieldError(emailInput, "err-hint-email");
+      }
+    });
+    emailInput.addEventListener("input", () => {
+      if (validateEmail(emailInput.value)) {
+        clearFieldError(emailInput, "err-hint-email");
+      }
+    });
+  }
+
   // Initialize display
   updateAllCounters();
   updatePricingVisibility();
@@ -1346,3 +1462,7 @@ window.openLightbox = openLightbox;
 window.closeLightbox = closeLightbox;
 window.selectAndOpenLightbox = selectAndOpenLightbox;
 window.executeSubmission = executeSubmission;
+window.checkPageValidity = checkPageValidity;
+window.validateName = validateName;
+window.validatePhone = validatePhone;
+window.validateEmail = validateEmail;
